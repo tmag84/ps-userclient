@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Espaço Virtual Colaboração</string>
+    <string name="title_activity_startup">StartupActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="menu_subscriptions">My Subscriptions</string>
+    <string name="menu_search">Search Services</string>
+    <string name="menu_settings">Profile</string>
+
+    <string name="label_subscribers">  Subscribers</string>
+    <string name="label_ranking">  Avg rank</string>
+    <string name="label_service_type">Service Type</string>
+
+    <string name="service_subscribe">Subscribe</string>
+    <string name="service_unsubscribe">Unsubscribe</string>
+
+    <string name="btn_search">Search</string>
+
+</resources>

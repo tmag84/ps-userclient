@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="api_url">http://ps-project.apphb.com/api/user</string>
+
+    <string name="api_get_subscriptions">subscriptions</string>
+    <string name="api_get_search_by_type">search-by-type</string>
+    <string name="api_get_search_by_preferences">search-by-preferences</string>
+
+    <string name="api_post_register">register</string>
+    <string name="api_post_rank">create-rank</string>
+    <string name="api_post_add_subscription">add-subscription</string>
+    <string name="api_post_remove_subscription">remove-subscription</string>
+
+    <string name="api_put_edit_user">edit-user</string>
+
+    <string name="query_email">email</string>
+    <string name="query_password">password</string>
+    <string name="query_service_id">id</string>
+    <string name="query_type">type</string>
+    <string name="query_list_type">Types?</string>
+    <string name="query_list_type_id">service_types</string>
+
+</resources>
