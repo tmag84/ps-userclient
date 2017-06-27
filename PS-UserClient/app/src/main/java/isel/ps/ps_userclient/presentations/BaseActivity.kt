@@ -7,9 +7,13 @@ import android.os.PersistableBundle
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import isel.ps.ps_userclient.App
 import isel.ps.ps_userclient.R
+import isel.ps.ps_userclient.services.NetworkService
 import isel.ps.ps_userclient.utils.constants.IntentKeys
 import isel.ps.ps_userclient.utils.constants.ServiceActions
+import isel.ps.ps_userclient.utils.constants.SharedPreferencesKeys
+import kotlinx.android.synthetic.main.activity_startup.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -51,7 +55,13 @@ abstract class BaseActivity : AppCompatActivity() {
             }
 
             R.id.menu_subscriptions -> {
-                startActivity(Intent(this, SubscriptionActivity::class.java))
+                val intent_request = Intent(this, NetworkService::class.java)
+                intent_request.putExtra(IntentKeys.ACTION, ServiceActions.GET_USER_SUBSCRIPTIONS)
+                (application as App).let {
+                    val email = it.SHARED_PREFS.getString(SharedPreferencesKeys.USER_EMAIL,"")
+                    intent_request.putExtra(IntentKeys.USER_EMAIL,email)
+                }
+                startService(intent_request)
             }
 
             R.id.menu_profile -> {

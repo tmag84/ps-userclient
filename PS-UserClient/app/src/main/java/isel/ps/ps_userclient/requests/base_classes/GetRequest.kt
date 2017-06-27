@@ -11,6 +11,7 @@ import java.io.IOException
 
 class GetRequest<DTO>(url: String,
                       private val dtoType: Class<DTO>,
+                      private val auth_token: String,
                       success: (DTO) -> Unit,
                       error: (VolleyError) -> Unit)
 
@@ -22,7 +23,6 @@ class GetRequest<DTO>(url: String,
     }
 
     override fun parseNetworkResponse(response: NetworkResponse): Response<DTO> {
-
         try {
             val dto = GetRequest.mapper.readValue(response.data, dtoType)
             return Response.success(dto, null)
@@ -30,5 +30,11 @@ class GetRequest<DTO>(url: String,
             e.printStackTrace()
             return Response.error(VolleyError())
         }
+    }
+
+    override fun getHeaders(): MutableMap<String, String> {
+        val headers = super.getHeaders()
+        headers.put("Authorization","bearer $auth_token")
+        return headers
     }
 }

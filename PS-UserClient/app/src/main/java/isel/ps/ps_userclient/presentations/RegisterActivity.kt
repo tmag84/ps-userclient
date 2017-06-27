@@ -4,38 +4,43 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
-import isel.ps.ps_userclient.App
 import isel.ps.ps_userclient.R
 import isel.ps.ps_userclient.receivers.NetworkReceiver
 import isel.ps.ps_userclient.services.NetworkService
 import isel.ps.ps_userclient.utils.constants.IntentKeys
 import isel.ps.ps_userclient.utils.constants.ServiceActions
-import isel.ps.ps_userclient.utils.constants.SharedPreferencesKeys
-import kotlinx.android.synthetic.main.activity_startup.*
+import kotlinx.android.synthetic.main.activity_register.*
 
-class StartupActivity : BaseActivity() {
+class RegisterActivity : BaseActivity() {
 
-    override val layoutResId: Int = R.layout.activity_startup
+    override val layoutResId: Int = R.layout.activity_subscription
+    override val actionBarId: Int? = R.id.toolbar
+    override val actionBarMenuResId: Int? = R.menu.main_menu
 
     private lateinit var myReceiver : NetworkReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         myReceiver = NetworkReceiver()
+
         LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
 
-        (application as App).let {
-            if (it.SHARED_PREFS.contains(SharedPreferencesKeys.USER_EMAIL)) {
-                val intent_request = Intent(this, NetworkService::class.java)
-                intent_request.putExtra(IntentKeys.ACTION, ServiceActions.AUTO_LOGIN)
+        btn_registration.setOnClickListener {
+            val email = text_register_email.text.toString()
+            val password = text_register_password.text.toString()
+            val confirm_password = text_register_confirm_password.toString()
+            val username = text_register_username.toString()
 
-                val email = it.SHARED_PREFS.getString(SharedPreferencesKeys.USER_EMAIL,"")
-                startup_useremail.text = "${R.string.text_loading} ${email}"
+            if (password.equals(confirm_password)) {
+                val intent_request = Intent(this, NetworkService::class.java)
+                intent_request.putExtra(IntentKeys.ACTION, ServiceActions.REGISTER)
+                intent_request.putExtra(IntentKeys.USER_EMAIL, email)
+                intent_request.putExtra(IntentKeys.USER_PASSWORD, password)
+                intent_request.putExtra(IntentKeys.USERNAME, username)
                 startService(intent_request)
             }
             else {
-                startActivity(Intent(this,LoginActivity::class.java))
+                text_register_error.text = getString(R.string.text_compare_passwords)
             }
         }
     }

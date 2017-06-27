@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="api_url">http://ps-project.apphb.com/api/user</string>
+    <string name="api_url" translatable="false">http://ps-project.apphb.com/api/user</string>
 
-    <string name="api_get_subscriptions">subscriptions</string>
-    <string name="api_get_search_by_type">search-by-type</string>
-    <string name="api_get_search_by_preferences">search-by-preferences</string>
+    <string name="api_get_subscriptions" translatable="false">subscriptions</string>
+    <string name="api_get_search_by_type" translatable="false">search-by-type</string>
+    <string name="api_get_search_by_preferences" translatable="false">search-by-preferences</string>
+    <string name="api_get_service_types" translatable="false">get-service-types</string>
 
-    <string name="api_post_register">register</string>
-    <string name="api_post_rank">create-rank</string>
-    <string name="api_post_add_subscription">add-subscription</string>
-    <string name="api_post_remove_subscription">remove-subscription</string>
+    <string name="api_post_register" translatable="false">register</string>
+    <string name="api_post_rank" translatable="false">create-rank</string>
+    <string name="api_post_add_subscription" translatable="false">add-subscription</string>
+    <string name="api_post_remove_subscription" translatable="false">remove-subscription</string>
 
-    <string name="api_put_edit_user">edit-user</string>
+    <string name="api_put_edit_user" translatable="false">edit-user</string>
 
-    <string name="query_email">email</string>
-    <string name="query_password">password</string>
-    <string name="query_service_id">id</string>
-    <string name="query_type">type</string>
-    <string name="query_list_type">Types?</string>
-    <string name="query_list_type_id">service_types</string>
+    <string name="query_email" translatable="false">email</string>
+    <string name="query_password" translatable="false">password</string>
+    <string name="query_service_id" translatable="false">id</string>
+    <string name="query_type" translatable="false">type</string>
+    <string name="query_list_type" translatable="false">Types?</string>
+    <string name="query_list_type_id" translatable="false">service_types</string>
 
 </resources>

@@ -70,6 +70,6 @@ class ServiceAdapter(val app: App, val context: Context, val list: ArrayList<Lis
         internal var serviceTitle: TextView = item.findViewById(R.id.service_name) as TextView
         internal var serviceRank: TextView = item.findViewById(R.id.service_rank) as TextView
         internal var serviceSubscribers: TextView = item.findViewById(R.id.service_subscribers) as TextView
-        internal var serviceSubscription: TextView = item.findViewById(R.id.btn_service_subscribe) as Button
+        internal var serviceSubscription: Button = item.findViewById(R.id.btn_service_subscribe) as Button
     }
 }

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:background="@drawable/background"
+    tools:context="isel.ps.ps_userclient.presentations.RegisterActivity">
+
+    <TextView
+        android:id="@+id/title_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/text_register_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/lbl_register_warning"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/text_register_email"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@+id/text_register_email"
+        android:layout_toStartOf="@+id/text_register_email"
+        android:text="@string/label_login"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/lbl_register_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_login_google"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/title_register"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/text_register_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/text_register_email"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="12dp" />
+
+    <EditText
+        android:id="@+id/text_register_confirm_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/text_register_password"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp" />
+
+    <TextView
+        android:id="@+id/lbl_register_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/text_register_password"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="11dp"
+        android:layout_toLeftOf="@+id/text_register_password"
+        android:layout_toStartOf="@+id/text_register_password"
+        android:text="@string/label_password"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/lbl_register_confirm_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_confirm_password"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/text_register_confirm_password"
+        android:layout_alignBottom="@+id/text_register_confirm_password"
+        android:layout_toLeftOf="@+id/text_register_confirm_password"
+        android:layout_toStartOf="@+id/text_register_confirm_password" />
+
+    <EditText
+        android:id="@+id/text_register_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/text_register_confirm_password"
+        android:layout_marginTop="42dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/text_register_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/lbl_register_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_username"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/text_register_username"
+        android:layout_alignBottom="@+id/text_register_username"
+        android:layout_toLeftOf="@+id/text_register_username"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/btn_registration"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_register"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="67dp" />
+</RelativeLayout>

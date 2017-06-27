@@ -17,9 +17,6 @@ class App : Application() {
 
     fun firstTimeInit() {
         val editor = SHARED_PREFS.edit()
-        editor.putString(SharedPreferencesKeys.USER_EMAIL,"user1@gmail.com")
-        editor.putString(SharedPreferencesKeys.USER_PASSWORD,"user1_pass")
-        editor.putString(SharedPreferencesKeys.USER_NAME,"user1")
         editor.putStringSet(SharedPreferencesKeys.PREFERED_TYPES,HashSet<String>())
         editor.putInt("initialized",1)
         editor.apply()
@@ -29,6 +26,11 @@ class App : Application() {
         super.onCreate()
 
         SHARED_PREFS = getSharedPreferences(SharedPreferencesKeys.SHARED_PREFS_ID, Context.MODE_PRIVATE)
+
+        val editor = SHARED_PREFS.edit()
+        editor.clear()
+        editor.commit()
+
         //first time init to setup shared preferences
         if (!SHARED_PREFS.contains("initialized")) {
             firstTimeInit()
