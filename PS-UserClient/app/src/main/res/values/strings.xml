@@ -1,30 +1,48 @@
 <resources>
     <string name="app_name" translatable="false">Espaço Virtual Colaboração</string>
-    <string name="menu_search">Pesquisar</string>
-    <string name="menu_settings">Perfil</string>
 
     <string name="label_subscribers">Assinantes</string>
     <string name="label_ranking" translatable="false">Avg rank</string>
-    <string name="label_service_type">Área Serviço</string>
+    <string name="label_service_type">Área de Serviço</string>
     <string name="label_login_title" translatable="false">Login</string>
     <string name="label_login_google">Requer uma conta Google</string>
     <string name="label_login" translatable="false">Google email</string>
     <string name="label_password" translatable="false">Password</string>
     <string name="label_confirm_password">Confirmar Password</string>
     <string name="label_username">Nome do Usuário</string>
+    <string name="label_preference_types">Preferência de Áreas</string>
+    <string name="label_error_message">O seguinte erro ocorreu</string>
+    <string name="label_error_option">Voltar para</string>
 
     <string name="service_subscribe">Aderir</string>
     <string name="service_unsubscribe">Desaderir</string>
 
     <string name="btn_search">Pesquisar</string>
+    <string name="btn_preference_search" translatable="false">Pesquisar por preferências</string>
     <string name="btn_login" translatable="false">Login</string>
     <string name="btn_register">Registre-se</string>
+    <string name="btn_prev" translatable="false">Back</string>
+    <string name="btn_next" translatable="false">Next</string>
+    <string name="btn_submit" translatable="false">Submeter</string>
+    <string name="btn_cancel" translatable="false">Cancelar</string>
+    <string name="btn_error_back_to_login" translatable="false">Login</string>
+    <string name="btn_error_back_to_subscriber" translatable="false">Subscrições</string>
 
     <string name="text_loading" translatable="false">Loading User</string>
     <string name="text_login">Faça sign-in com a sua conta</string>
     <string name="text_register">Ou</string>
-    <string name="text_compare_passwords">As passwords não são iguais</string>
+    <string name="text_compare_passwords" translatable="false">As passwords não são iguais</string>
+    <string name="text_no_preferences_toast" translatable="false">Não existem preferências selecionadas, faça a seleção no Perfil.</string>
 
     <string name="menu_subscriptions">Subscrições</string>
+    <string name="menu_profile" translatable="false">Perfil</string>
+    <string name="menu_search">Pesquisar</string>
+    <string name="menu_events" translatable="false">Eventos</string>
+    <string name="menu_settings">Perfil</string>
+
+    <string name="title_subscription" translatable="false">Subscrições</string>
+    <string name="title_profile" translatable="false">Perfil</string>
+    <string name="title_error" translatable="false">Erro</string>
+    <string name="title_events" translatable="false">Futuros Eventos</string>
 
 </resources>

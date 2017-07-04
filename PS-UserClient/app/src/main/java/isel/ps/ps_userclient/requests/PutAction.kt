@@ -2,15 +2,16 @@ package isel.ps.ps_userclient.requests
 
 import com.android.volley.VolleyError
 import isel.ps.ps_userclient.App
-import isel.ps.ps_userclient.models.parcelables.mService
-import isel.ps.ps_userclient.requests.base_classes.GetRequest
+import isel.ps.ps_userclient.requests.base_classes.PutRequest
+import org.json.JSONObject
 
-class GetServiceInfo(
+class PutAction(
         app: App,
         url: String,
         auth_token: String,
-        success:(service_info: mService) -> Unit,
-        failure:(error:VolleyError)-> Unit)
+        json_body: JSONObject,
+        success:(json_response: JSONObject) -> Unit,
+        failure:(error: VolleyError)-> Unit)
 {
     val func_success = success
     val func_failure = failure
@@ -18,10 +19,10 @@ class GetServiceInfo(
     init {
         val requestQueue = app.requestQueue
         requestQueue.add(
-                GetRequest(
+                PutRequest(
                         url,
-                        mService::class.java,
                         auth_token,
+                        json_body,
                         {result->func_success.invoke(result)},
                         {error->func_failure.invoke(error)}
                 )

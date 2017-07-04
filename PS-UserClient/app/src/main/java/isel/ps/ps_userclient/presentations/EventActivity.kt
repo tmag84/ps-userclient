@@ -1,12 +1,17 @@
 package isel.ps.ps_userclient.presentations
 
-import android.content.IntentFilter
+import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.LocalBroadcastManager
-
+import isel.ps.ps_userclient.App
 import isel.ps.ps_userclient.R
-import isel.ps.ps_userclient.receivers.NetworkReceiver
+import isel.ps.ps_userclient.models.parcelables.mUserEventWrapper
+import isel.ps.ps_userclient.services.NetworkService
+import isel.ps.ps_userclient.utils.adapters.AdaptersUtils
+import isel.ps.ps_userclient.utils.adapters.EventsAdapter
 import isel.ps.ps_userclient.utils.constants.IntentKeys
+import isel.ps.ps_userclient.utils.constants.ServiceActions
+import isel.ps.ps_userclient.utils.services.ServiceUtils
+import kotlinx.android.synthetic.main.activity_event.*
 
 class EventActivity : BaseActivity() {
 
@@ -14,13 +19,27 @@ class EventActivity : BaseActivity() {
     override val actionBarId: Int? = R.id.toolbar
     override val actionBarMenuResId: Int? = R.menu.main_menu
 
-    private lateinit var myReceiver : NetworkReceiver
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        myReceiver = NetworkReceiver()
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
+        val events_info = intent.getParcelableExtra<mUserEventWrapper>(IntentKeys.EVENTS_INFO)
+        btn_event_prev.isEnabled = ServiceUtils.checkLinksHasRelField(events_info?._links,"back")
+        btn_event_prev.setOnClickListener {
+            val new_intent = Intent(this, NetworkService::class.java)
+            new_intent.putExtra(IntentKeys.ACTION, ServiceActions.GET_USER_EVENTS)
+            new_intent.putExtra(IntentKeys.PAGE_REQUEST, events_info?.curr_page!! -1)
+            startService(new_intent)
+        }
+
+        btn_event_next.isEnabled = ServiceUtils.checkLinksHasRelField(events_info?._links,"back")
+        btn_event_next.setOnClickListener {
+            val new_intent = Intent(this, NetworkService::class.java)
+            new_intent.putExtra(IntentKeys.ACTION, ServiceActions.GET_USER_EVENTS)
+            new_intent.putExtra(IntentKeys.PAGE_REQUEST, events_info?.curr_page!! -1)
+            startService(new_intent)
+        }
+
+        eventsView.adapter=EventsAdapter((application as App),this, AdaptersUtils.setUserEvents(events_info.events))
     }
 
     override fun onResume() {
@@ -33,6 +52,5 @@ class EventActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver)
     }
 }

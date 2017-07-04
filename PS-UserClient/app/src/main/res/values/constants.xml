@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="api_url" translatable="false">http://ps-project.apphb.com/api/user</string>
+    <string name="api_url" translatable="false">http://ps-project.apphb.com</string>
+    <string name="api_user" translatable="false">api/user</string>
 
     <string name="api_get_subscriptions" translatable="false">subscriptions</string>
     <string name="api_get_search_by_type" translatable="false">search-by-type</string>
     <string name="api_get_search_by_preferences" translatable="false">search-by-preferences</string>
     <string name="api_get_service_types" translatable="false">get-service-types</string>
-
+    <string name="api_get_service" translatable="false">get-service-types</string>
+    <string name="api_get_user_event" translatable="false">get-user-events</string>
     <string name="api_post_register" translatable="false">register</string>
     <string name="api_post_rank" translatable="false">create-rank</string>
     <string name="api_post_add_subscription" translatable="false">add-subscription</string>
     <string name="api_post_remove_subscription" translatable="false">remove-subscription</string>
 
     <string name="api_put_edit_user" translatable="false">edit-user</string>
+    <string name="api_put_edit_password" translatable="false">edit-password</string>
 
     <string name="query_email" translatable="false">email</string>
     <string name="query_password" translatable="false">password</string>
     <string name="query_service_id" translatable="false">id</string>
+    <string name="query_page" translatable="false">page</string>
     <string name="query_type" translatable="false">type</string>
-    <string name="query_list_type" translatable="false">Types?</string>
-    <string name="query_list_type_id" translatable="false">service_types</string>
+    <string name="query_service_types" translatable="false">service_types</string>
+
+    <string name="type_bar" translatable="false">Bar</string>
+    <string name="type_cinema" translatable="false">Cinema</string>
+    <string name="type_teatro" translatable="false">Teatro</string>
+    <string name="type_danca" translatable="false">Dança</string>
+    <string name="type_ginasio" translatable="false">Ginásio</string>
+    <string name="type_restaurante" translatable="false">Restaurante</string>
 
 </resources>

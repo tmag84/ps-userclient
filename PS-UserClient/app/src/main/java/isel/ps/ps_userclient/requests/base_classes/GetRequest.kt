@@ -28,12 +28,14 @@ class GetRequest<DTO>(url: String,
             return Response.success(dto, null)
         } catch (e: IOException) {
             e.printStackTrace()
-            return Response.error(VolleyError())
+            val error = GetRequest.mapper.readValue(response.data, Error::class.java)
+            val volley_error = VolleyError(error.message)
+            return Response.error(volley_error)
         }
     }
 
     override fun getHeaders(): MutableMap<String, String> {
-        val headers = super.getHeaders()
+        val headers = HashMap<String, String>()
         headers.put("Authorization","bearer $auth_token")
         return headers
     }

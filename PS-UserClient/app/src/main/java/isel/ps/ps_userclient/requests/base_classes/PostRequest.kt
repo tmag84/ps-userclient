@@ -29,7 +29,9 @@ class PostRequest(url: String,
             return Response.success(dto, null)
         } catch (e: IOException) {
             e.printStackTrace()
-            return Response.error(VolleyError())
+            val error = GetRequest.mapper.readValue(response.data, Error::class.java)
+            val volley_error = VolleyError(error.message)
+            return Response.error(volley_error)
         }
     }
 

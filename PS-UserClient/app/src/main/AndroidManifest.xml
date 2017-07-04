@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".App"
@@ -23,16 +24,17 @@
         <activity android:name=".presentations.ProfileActivity" />
         <activity android:name=".presentations.SearchActivity" />
         <activity android:name=".presentations.SubscriptionActivity" />
-
-        <receiver
-            android:name=".receivers.NetworkReceiver"
-            android:enabled="false"
-            android:exported="false" />
+        <activity android:name=".presentations.RegisterActivity" />
+        <activity android:name=".presentations.EventActivity" />
+        <activity android:name=".presentations.ServiceActivity" />
+        <activity android:name=".presentations.ErrorActivity" />
 
         <service android:name=".services.NetworkService" />
 
-        <activity android:name=".presentations.RegisterActivity" />
-        <activity android:name=".presentations.EventActivity"></activity>
+        <receiver
+            android:name=".receivers.NetworkReceiver"
+            android:enabled="true"
+            android:exported="false"
+            />
     </application>
-
 </manifest>

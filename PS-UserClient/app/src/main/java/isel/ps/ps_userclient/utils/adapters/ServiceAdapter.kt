@@ -45,11 +45,19 @@ class ServiceAdapter(val app: App, val context: Context, val list: ArrayList<Lis
 
         val currentListData = getItem(position)
 
+        val intent_request = Intent(context, NetworkService::class.java)
+
         mViewHolder.serviceTitle.text = currentListData.service_name
+        mViewHolder.serviceTitle.setOnClickListener {
+            intent_request.putExtra(IntentKeys.ACTION, ServiceActions.GET_SERVICE)
+            intent_request.putExtra(IntentKeys.SERVICE_ID,currentListData.service_id)
+            context.startService(intent_request)
+        }
+
+        mViewHolder.serviceType.text = currentListData.service_type.toString()
         mViewHolder.serviceRank.text = currentListData.avg_rank.toString()
         mViewHolder.serviceSubscribers.text = currentListData.n_subscribers.toString()
 
-        val intent_request = Intent(context, NetworkService::class.java)
         if (currentListData.subscribed) {
             mViewHolder.serviceSubscription.text = context.getString(R.string.service_unsubscribe)
             intent_request.putExtra(IntentKeys.ACTION, ServiceActions.UNSUBSCRIBE)
@@ -68,6 +76,7 @@ class ServiceAdapter(val app: App, val context: Context, val list: ArrayList<Lis
 
     private inner class MyViewHolder(item: View) {
         internal var serviceTitle: TextView = item.findViewById(R.id.service_name) as TextView
+        internal var serviceType: TextView = item.findViewById(R.id.service_type) as TextView
         internal var serviceRank: TextView = item.findViewById(R.id.service_rank) as TextView
         internal var serviceSubscribers: TextView = item.findViewById(R.id.service_subscribers) as TextView
         internal var serviceSubscription: Button = item.findViewById(R.id.btn_service_subscribe) as Button

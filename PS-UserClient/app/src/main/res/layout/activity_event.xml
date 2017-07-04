@@ -1,9 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_event"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:background="@drawable/background"
     tools:context="isel.ps.ps_userclient.presentations.EventActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_main"/>
+
+    <TextView
+        android:id="@+id/title_events"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:text="@string/title_events"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/btn_event_prev"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_prev"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/text_event_page"
+        android:layout_toStartOf="@+id/text_event_page"
+        android:layout_alignTop="@+id/text_event_page" />
+
+    <Button
+        android:id="@+id/btn_event_next"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_next"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/text_event_page"
+        android:layout_toEndOf="@+id/text_event_page"
+        android:layout_below="@+id/eventsView" />
+
+    <TextView
+        android:id="@+id/text_event_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="100"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp" />
+
+    <ListView
+        android:id="@+id/eventsView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_event_prev"
+        android:layout_below="@+id/title_events"
+        android:layout_centerHorizontal="true"
+        android:cacheColorHint="@color/colorPrimary" />
+</RelativeLayout>

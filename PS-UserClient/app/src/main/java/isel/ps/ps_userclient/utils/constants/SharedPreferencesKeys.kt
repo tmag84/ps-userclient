@@ -7,5 +7,7 @@ class SharedPreferencesKeys {
         val USER_PASSWORD = "password"
         val USER_NAME = "name"
         val PREFERED_TYPES = "list_types"
+        val AUTH_TOKEN="auth_token"
+        val EXPIRE_DATE="expire_date"
     }
 }

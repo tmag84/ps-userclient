@@ -1,6 +1,8 @@
 package isel.ps.ps_userclient.utils.adapters
 
+import isel.ps.ps_userclient.models.ListEvents
 import isel.ps.ps_userclient.models.ListServices
+import isel.ps.ps_userclient.models.parcelables.ServiceEvent
 import isel.ps.ps_userclient.models.parcelables.mService
 import java.util.*
 
@@ -14,9 +16,28 @@ class AdaptersUtils {
                 val elem = ListServices(
                         it.name,
                         it.id,
+                        it.service_type,
                         it.avg_rank,
                         it.n_subscribers,
                         it.subscribed
+                )
+                array.add(elem)
+            }
+            return array
+        }
+
+        fun setUserEvents(events:List<ServiceEvent>) : ArrayList<ListEvents> {
+            val array = ArrayList<ListEvents>()
+            if (events.size==null) return array
+            events.sortedWith(compareBy({it.event_date}))
+            events.forEach {
+                val elem = ListEvents(
+                        it.service_id,
+                        it.service_type,
+                        it.service_name,
+                        it.id,
+                        it.text,
+                        it.event_date
                 )
                 array.add(elem)
             }

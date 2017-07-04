@@ -3,24 +3,24 @@ package isel.ps.ps_userclient.models.parcelables
 import android.os.Parcel
 import android.os.Parcelable
 
-data class mServiceWrapper(
-        val services : List<mService>,
-        val total_services: Int,
+class mUserEventWrapper(
+        val total_events: Int,
+        val events: List<ServiceEvent>,
         val _links: List<Links>?,
         val curr_page: Int
 ) : Parcelable {
-
     companion object {
+
         @JvmField @Suppress("unused")
-        val CREATOR = object : Parcelable.Creator<mServiceWrapper> {
-            override fun createFromParcel(source: Parcel) = mServiceWrapper(source)
-            override fun newArray(size: Int): Array<mServiceWrapper?> = arrayOfNulls(size)
+        val CREATOR = object : Parcelable.Creator<mUserEventWrapper> {
+            override fun createFromParcel(source: Parcel) = mUserEventWrapper(source)
+            override fun newArray(size: Int): Array<mUserEventWrapper?> = arrayOfNulls(size)
         }
     }
 
     constructor(source: Parcel) : this(
-            services = mutableListOf<mService>().apply { source.readTypedList(this, mService.CREATOR) },
-            total_services = source.readInt(),
+            total_events = source.readInt(),
+            events = mutableListOf<ServiceEvent>().apply { source.readTypedList(this, ServiceEvent.CREATOR) },
             _links = mutableListOf<Links>().apply {source.readTypedList(this, Links.CREATOR)},
             curr_page = source.readInt()
     )
@@ -29,10 +29,11 @@ data class mServiceWrapper(
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.apply {
-            writeTypedList(services)
-            writeInt(total_services)
+            writeInt(total_events)
+            writeTypedList(events)
             writeTypedList(_links)
             writeInt(curr_page)
         }
     }
+
 }

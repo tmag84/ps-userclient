@@ -13,7 +13,6 @@ import isel.ps.ps_userclient.services.NetworkService
 import isel.ps.ps_userclient.utils.constants.IntentKeys
 import isel.ps.ps_userclient.utils.constants.ServiceActions
 import isel.ps.ps_userclient.utils.constants.SharedPreferencesKeys
-import kotlinx.android.synthetic.main.activity_startup.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -23,8 +22,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private fun initContents() {
         setContentView(layoutResId)
-        actionBarId?.let {
-            setSupportActionBar(findViewById(it) as Toolbar)
+        if (actionBarId!=null) {
+            actionBarId?.let {
+                setSupportActionBar(findViewById(it) as Toolbar)
+            }
         }
     }
 
@@ -39,21 +40,20 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        actionBarMenuResId?.let {
-            menuInflater.inflate(R.menu.main_menu, menu)
-            return true
+        if (actionBarMenuResId!=null) {
+            actionBarMenuResId?.let {
+                menuInflater.inflate(R.menu.main_menu, menu)
+                return true
+            }
         }
-
         return super.onCreateOptionsMenu(menu)
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem) : Boolean {
         when(item.itemId) {
             R.id.menu_search -> {
                 startActivity(Intent(this, SearchActivity::class.java))
             }
-
             R.id.menu_subscriptions -> {
                 val intent_request = Intent(this, NetworkService::class.java)
                 intent_request.putExtra(IntentKeys.ACTION, ServiceActions.GET_USER_SUBSCRIPTIONS)
@@ -63,9 +63,11 @@ abstract class BaseActivity : AppCompatActivity() {
                 }
                 startService(intent_request)
             }
-
             R.id.menu_profile -> {
                 startActivity(Intent(this,ProfileActivity::class.java))
+            }
+            R.id.menu_events -> {
+                startActivity(Intent(this,EventActivity::class.java))
             }
             else -> return super.onOptionsItemSelected(item)
         }

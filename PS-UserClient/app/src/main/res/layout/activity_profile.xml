@@ -5,9 +5,150 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
+    android:background="@drawable/background"
     tools:context="isel.ps.ps_userclient.presentations.ProfileActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_main"/>
+
+    <TextView
+        android:id="@+id/title_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="@string/title_profile"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/lbl_profile_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="69dp"
+        android:text="@string/label_username"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_below="@+id/title_profile"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/text_profile_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/lbl_profile_username"
+        android:layout_alignBottom="@+id/lbl_profile_username"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/lbl_type_preference"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="@string/label_preference_types"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_below="@+id/text_profile_username"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:id="@+id/cb_bar"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/type_bar"
+        android:textSize="18sp"
+        android:layout_below="@+id/lbl_type_preference"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp" />
+
+    <CheckBox
+        android:id="@+id/cb_cinema"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:text="@string/type_cinema"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/cb_bar"
+        android:layout_alignBottom="@+id/cb_bar"
+        android:layout_toRightOf="@+id/cb_bar"
+        android:layout_toEndOf="@+id/cb_bar" />
+
+    <CheckBox
+        android:id="@+id/cb_teatro"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:text="@string/type_teatro"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        android:layout_below="@+id/cb_danca"
+        android:layout_alignLeft="@+id/cb_danca"
+        android:layout_alignStart="@+id/cb_danca"
+        android:layout_marginTop="22dp" />
+
+    <CheckBox
+        android:id="@+id/cb_danca"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:text="@string/type_danca"
+        android:textSize="18sp"
+        android:layout_below="@+id/cb_bar"
+        android:layout_toLeftOf="@+id/cb_ginasio"
+        android:layout_toStartOf="@+id/cb_ginasio"
+        android:layout_marginTop="22dp" />
+
+    <CheckBox
+        android:id="@+id/cb_ginasio"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:text="@string/type_ginasio"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/cb_danca"
+        android:layout_alignBottom="@+id/cb_danca"
+        android:layout_toRightOf="@+id/cb_bar"
+        android:layout_toEndOf="@+id/cb_bar" />
+
+    <CheckBox
+        android:id="@+id/cb_restaurante"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:text="@string/type_restaurante"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/cb_teatro"
+        android:layout_alignBottom="@+id/cb_teatro"
+        android:layout_toRightOf="@+id/cb_teatro"
+        android:layout_toEndOf="@+id/cb_teatro" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_submit"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/cb_teatro"
+        android:layout_toEndOf="@+id/cb_teatro" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btn_submit"
+        android:layout_toLeftOf="@+id/cb_restaurante"
+        android:layout_toStartOf="@+id/cb_restaurante"
+        android:text="@string/btn_cancel" />
+
 </RelativeLayout>
