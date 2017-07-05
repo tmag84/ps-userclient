@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/block_lbl_info_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_service_type"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp" />
+
+    <TextView
+        android:id="@+id/block_info_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/block_lbl_info_type"
+        android:layout_toEndOf="@+id/block_lbl_info_type"
+        android:layout_toRightOf="@+id/block_lbl_info_type"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/block_lbl_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/lbl_service_contact"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_below="@+id/block_lbl_info_location"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/block_lbl_contact_name"
+        android:layout_width="80sp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="10dp"
+        android:text="@string/lbl_service_contact_name"
+        android:textSize="18sp"
+        android:layout_below="@+id/block_lbl_contact"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/block_info_contact_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/block_lbl_contact_name"
+        android:text="TextView"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/block_lbl_contact_name"
+        android:layout_toEndOf="@+id/block_lbl_contact_name" />
+
+    <TextView
+        android:id="@+id/block_lbl_email"
+        android:layout_width="80sp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="15dp"
+        android:text="@string/lbl_service_contact_email"
+        android:textSize="18sp"
+        android:layout_below="@+id/block_lbl_contact_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/block_info_contact_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/block_lbl_email"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/colorPrimary"
+        android:layout_toRightOf="@+id/block_lbl_email"
+        android:text="TextView"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/block_lbl_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="@string/lbl_service_contact_number"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/block_lbl_email"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/block_info_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/block_lbl_number"
+        android:layout_alignBottom="@+id/block_lbl_number"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/block_lbl_number"
+        android:layout_toRightOf="@+id/block_lbl_number"
+        android:text="TextView"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/block_lbl_info_location"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="@string/lbl_service_location"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_below="@+id/block_lbl_grade"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/block_info_contact_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/block_lbl_info_location"
+        android:layout_toEndOf="@+id/block_lbl_info_location"
+        android:layout_toRightOf="@+id/block_lbl_info_location"
+        android:text="TextView"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/block_lbl_info_subscribers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="@string/lbl_service_subscribers"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_below="@+id/block_lbl_info_type"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/block_lbl_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/block_lbl_info_subscribers"
+        android:layout_marginTop="20dp"
+        android:text="@string/lbl_service_grade"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/block_info_subscribers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/block_lbl_info_subscribers"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/block_lbl_grade"
+        android:layout_toRightOf="@+id/block_lbl_grade"
+        android:text="TextView"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/block_info_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/block_lbl_grade"
+        android:layout_alignLeft="@+id/block_info_subscribers"
+        android:layout_alignStart="@+id/block_info_subscribers"
+        android:text="TextView"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+</RelativeLayout>

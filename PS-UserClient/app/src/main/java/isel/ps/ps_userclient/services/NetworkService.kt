@@ -80,7 +80,7 @@ class NetworkService : Service() {
         )
     }
 
-    private fun getUserSubscriptions(startId: Int, page: Int) {
+    private fun getUserSubscriptions(startId: Int, page: Int?) {
         val expire_date = getExpire_date()
 
         if (DateUtils.isDateAfterCurrentDay(expire_date)) {
@@ -96,7 +96,7 @@ class NetworkService : Service() {
         }
     }
 
-    private fun getServicesByType(startId: Int,type:Int, page: Int) {
+    private fun getServicesByType(startId: Int,type:Int, page: Int?) {
         val expire_date = getExpire_date()
 
         if (DateUtils.isDateAfterCurrentDay(expire_date)) {
@@ -112,7 +112,7 @@ class NetworkService : Service() {
         }
     }
 
-    private fun getServicesByPreferences(startId: Int, list:List<String>,page: Int) {
+    private fun getServicesByPreferences(startId: Int, list:List<String>,page: Int?) {
         val expire_date = getExpire_date()
 
         if (DateUtils.isDateAfterCurrentDay(expire_date)) {
@@ -150,7 +150,7 @@ class NetworkService : Service() {
         }
     }
 
-    private fun getUserEvents(startId: Int, page:Int) {
+    private fun getUserEvents(startId: Int, page:Int?) {
         val expire_date = getExpire_date()
 
         if (DateUtils.isDateAfterCurrentDay(expire_date)) {
@@ -186,6 +186,7 @@ class NetworkService : Service() {
                     {
                         val intent = Intent(IntentKeys.NETWORK_RECEIVER)
                         intent.putExtra(IntentKeys.SERVICE_RESPONSE,ServiceResponses.SUBSCRIPTION_ACTION_SUCCESS)
+                        intent.putExtra(IntentKeys.IS_SUBSCRIBING,subscribe)
                         broadcast(intent)
                         stopSelf(startId)
                     },
@@ -310,17 +311,17 @@ class NetworkService : Service() {
                         registerUser(startId,email,password,username)
                     }
                     ServiceActions.GET_USER_SUBSCRIPTIONS -> {
-                        val page = intent.extras?.get(IntentKeys.PAGE_REQUEST) as Int
+                        val page = intent.extras?.get(IntentKeys.PAGE_REQUEST) as Int?
                         getUserSubscriptions(startId, page)
                     }
                     ServiceActions.SEARCH_BY_TYPE -> {
                         val type = intent.extras?.get(IntentKeys.SERVICE_TYPE) as Int
-                        val page = intent.extras?.get(IntentKeys.PAGE_REQUEST) as Int
+                        val page = intent.extras?.get(IntentKeys.PAGE_REQUEST) as Int?
                         getServicesByType(startId,type,page)
                     }
                     ServiceActions.SEARCH_BY_PREFERENCES -> {
                         val list = intent.extras?.get(IntentKeys.SERVICE_LIST_TYPES) as List<String>
-                        val page = intent.extras?.get(IntentKeys.PAGE_REQUEST) as Int
+                        val page = intent.extras?.get(IntentKeys.PAGE_REQUEST) as Int?
                         getServicesByPreferences(startId,list,page)
                     }
                     ServiceActions.GET_SERVICE -> {
@@ -328,7 +329,7 @@ class NetworkService : Service() {
                         getService(startId,service)
                     }
                     ServiceActions.GET_USER_EVENTS -> {
-                        val page = intent.extras?.get(IntentKeys.PAGE_REQUEST) as Int
+                        val page = intent.extras?.get(IntentKeys.PAGE_REQUEST) as Int?
                         getUserEvents(startId,page)
                     }
                     ServiceActions.SUBSCRIBE -> {

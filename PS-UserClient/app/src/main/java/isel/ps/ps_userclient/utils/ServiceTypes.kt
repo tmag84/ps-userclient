@@ -20,6 +20,18 @@ class ServiceTypes() {
         return service_types.get(type)!!
     }
 
+    fun getServiceTypeName(id:Int) : String {
+        when(id) {
+            1 -> return "Bar"
+            2 -> return "Cinema"
+            3 -> return "Teatro"
+            4 -> return "Dança"
+            5 -> return "Ginásio"
+            6 -> return "Restaurante"
+            else -> return ""
+        }
+    }
+
     fun getTypesList() : List<String> {
         return service_types.keys.toList()
     }

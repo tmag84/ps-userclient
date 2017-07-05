@@ -10,20 +10,20 @@ import android.widget.Button
 import android.widget.TextView
 import isel.ps.ps_userclient.App
 import isel.ps.ps_userclient.R
-import isel.ps.ps_userclient.models.ListServices
+import isel.ps.ps_userclient.models.parcelables.mService
+import isel.ps.ps_userclient.presentations.ServiceActivity
 import isel.ps.ps_userclient.services.NetworkService
 import isel.ps.ps_userclient.utils.constants.IntentKeys
 import isel.ps.ps_userclient.utils.constants.ServiceActions
 
-@Suppress("NAME_SHADOWING")
-class ServiceAdapter(val app: App, val context: Context, val list: ArrayList<ListServices>) : BaseAdapter() {
+class SubscriptionAdapter(val app: App, val context: Context, val list: ArrayList<mService>) : BaseAdapter() {
     val inflater : LayoutInflater = LayoutInflater.from(context)
 
     override fun getCount(): Int {
         return list.count()
     }
 
-    override fun getItem(position: Int): ListServices {
+    override fun getItem(position: Int): mService {
         return list[position]
     }
 
@@ -45,17 +45,14 @@ class ServiceAdapter(val app: App, val context: Context, val list: ArrayList<Lis
 
         val currentListData = getItem(position)
 
-
-
-        mViewHolder.serviceTitle.text = currentListData.service_name
+        mViewHolder.serviceTitle.text = currentListData.name
         mViewHolder.serviceTitle.setOnClickListener {
-            val intent_service = Intent(context, NetworkService::class.java)
-            intent_service.putExtra(IntentKeys.ACTION, ServiceActions.GET_SERVICE)
-            intent_service.putExtra(IntentKeys.SERVICE_ID,currentListData.service_id)
-            context.startService(intent_service)
+            val intent_subscription = Intent(context, ServiceActivity::class.java)
+            intent_subscription.putExtra(IntentKeys.SERVICE,currentListData)
+            context.startActivity(intent_subscription)
         }
 
-        mViewHolder.serviceType.text = currentListData.service_type.toString()
+        mViewHolder.serviceType.text = app.serviceTypes.getServiceTypeName(currentListData.service_type)
         mViewHolder.serviceRank.text = currentListData.avg_rank.toString()
         mViewHolder.serviceSubscribers.text = currentListData.n_subscribers.toString()
 
@@ -69,8 +66,9 @@ class ServiceAdapter(val app: App, val context: Context, val list: ArrayList<Lis
             mViewHolder.serviceSubscription.text = context.getString(R.string.service_subscribe)
             intent_request.putExtra(IntentKeys.ACTION, ServiceActions.SUBSCRIBE)
         }
+
         mViewHolder.serviceSubscription.setOnClickListener {
-            intent_request.putExtra(IntentKeys.SERVICE_ID, currentListData.service_id)
+            intent_request.putExtra(IntentKeys.SERVICE_ID, currentListData.id)
             context.startService(intent_request)
         }
         return convertView

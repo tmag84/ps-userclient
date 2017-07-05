@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import isel.ps.ps_userclient.App
 import isel.ps.ps_userclient.R
+import isel.ps.ps_userclient.receivers.NetworkReceiver
 import isel.ps.ps_userclient.services.NetworkService
 import isel.ps.ps_userclient.utils.constants.IntentKeys
 import isel.ps.ps_userclient.utils.constants.ServiceActions
@@ -19,6 +20,8 @@ abstract class BaseActivity : AppCompatActivity() {
     protected abstract val layoutResId: Int
     protected open val actionBarId: Int? = null
     protected open val actionBarMenuResId: Int? = null
+
+    protected open lateinit var myReceiver : NetworkReceiver
 
     private fun initContents() {
         setContentView(layoutResId)

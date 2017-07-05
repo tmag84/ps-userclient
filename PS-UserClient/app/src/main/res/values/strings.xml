@@ -8,11 +8,25 @@
     <string name="label_login_google">Requer uma conta Google</string>
     <string name="label_login" translatable="false">Google email</string>
     <string name="label_password" translatable="false">Password</string>
-    <string name="label_confirm_password">Confirmar Password</string>
-    <string name="label_username">Nome do Usuário</string>
-    <string name="label_preference_types">Preferência de Áreas</string>
-    <string name="label_error_message">O seguinte erro ocorreu</string>
-    <string name="label_error_option">Voltar para</string>
+    <string name="label_confirm_password" translatable="false">Confirmar Password</string>
+    <string name="label_username" translatable="false">Nome do Usuário</string>
+    <string name="label_preference_types" translatable="false">Preferência de Áreas</string>
+    <string name="label_error_message" translatable="false">O seguinte erro ocorreu</string>
+    <string name="label_error_option" translatable="false">Voltar para</string>
+    <string name="lbl_event_date" translatable="false">Data</string>
+
+    <string name="lbl_service_location" translatable="false">Localização</string>
+    <string name="lbl_service_contact_number" translatable="false">Número telefone</string>
+    <string name="lbl_service_contact_email" translatable="false">Email</string>
+    <string name="lbl_service_contact_name" translatable="false">Nome</string>
+    <string name="lbl_service_contact" translatable="false">Contacto</string>
+    <string name="lbl_service_subscribers" translatable="false">Número de Assinantes</string>
+    <string name="lbl_service_grade" translatable="false">Nota média do Serviço</string>
+
+    <string name="lbl_comment_username" translatable="false">Utilizador</string>
+    <string name="lbl_comment_grade" translatable="false">Nota</string>
+
+    <string name="lbl_notice_date" translatable="false">Data Publicação</string>
 
     <string name="service_subscribe">Aderir</string>
     <string name="service_unsubscribe">Desaderir</string>
@@ -27,12 +41,23 @@
     <string name="btn_cancel" translatable="false">Cancelar</string>
     <string name="btn_error_back_to_login" translatable="false">Login</string>
     <string name="btn_error_back_to_subscriber" translatable="false">Subscrições</string>
+    <string name="btn_add_event_calendar" translatable="false">Adicionar ao Calendário</string>
+    <string name="btn_post_comment" translatable="false">Comentar</string>
+    <string name="btn_alter_comment" translatable="false">Alterar Comentário</string>
+
+    <string name="btn_service_info" translatable="false">Informação</string>
+    <string name="btn_service_events" translatable="false">Eventos</string>
+    <string name="btn_service_notices" translatable="false">Notícias</string>
+    <string name="btn_service_ranking" translatable="false">Comentários</string>
 
     <string name="text_loading" translatable="false">Loading User</string>
     <string name="text_login">Faça sign-in com a sua conta</string>
     <string name="text_register">Ou</string>
     <string name="text_compare_passwords" translatable="false">As passwords não são iguais</string>
     <string name="text_no_preferences_toast" translatable="false">Não existem preferências selecionadas, faça a seleção no Perfil.</string>
+    <string name="text_added_subscription" translatable="false">Ou</string>
+    <string name="text_removed_subscription" translatable="false">Ou</string>
+    <string name="text_not_provider_info" translatable="false">Não fornecido</string>
 
     <string name="menu_subscriptions">Subscrições</string>
     <string name="menu_profile" translatable="false">Perfil</string>

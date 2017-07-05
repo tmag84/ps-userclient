@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.content.Context
 import android.content.BroadcastReceiver
+import android.widget.Toast
 import isel.ps.ps_userclient.App
+import isel.ps.ps_userclient.R
 import isel.ps.ps_userclient.models.parcelables.mLogin
 import isel.ps.ps_userclient.models.parcelables.mServiceWrapper
 import isel.ps.ps_userclient.presentations.*
@@ -16,6 +18,8 @@ import isel.ps.ps_userclient.utils.constants.SharedPreferencesKeys
 import isel.ps.ps_userclient.utils.dates.DateUtils
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.activity_service.*
+import kotlinx.android.synthetic.main.service_block.*
 
 class NetworkReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
@@ -122,7 +126,23 @@ class NetworkReceiver : BroadcastReceiver() {
                 context?.startActivity(new_intent)
             }
             ServiceResponses.SUBSCRIPTION_ACTION_SUCCESS -> {
-
+                val subscribing = intent.extras?.getBoolean(IntentKeys.IS_SUBSCRIBING)
+                if (context!=null && subscribing!=null) {
+                    if (subscribing) {
+                        (context as Activity).let {
+                            Toast.makeText(it,it.getString(R.string.text_added_subscription), Toast.LENGTH_SHORT).show()
+                            it.btn_service_subscribe.text = context.getText(R.string.service_unsubscribe)
+                            it.btn_subscribe_service.text = context.getText(R.string.service_unsubscribe)
+                        }
+                    }
+                    else {
+                        (context as Activity).let {
+                            Toast.makeText(it,it.getString(R.string.text_removed_subscription), Toast.LENGTH_SHORT).show()
+                            it.btn_service_subscribe.text = context.getText(R.string.service_subscribe)
+                            it.btn_subscribe_service.text = context.getText(R.string.service_subscribe)
+                        }
+                    }
+                }
             }
             ServiceResponses.SUBSCRIPTION_ACTION_FAILURE -> {
                 val error = intent.extras?.getString(IntentKeys.ERROR)

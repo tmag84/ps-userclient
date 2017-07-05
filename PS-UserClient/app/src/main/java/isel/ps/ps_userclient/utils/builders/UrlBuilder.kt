@@ -15,38 +15,38 @@ class UrlBuilder(res: Resources) {
         return "$baseUrl/$userUrl/$path"
     }
 
-    fun buildGetSubscriptionUrl(page: Int) : String {
+    fun buildGetSubscriptionUrl(page: Int?) : String {
         val path = resources.getString(R.string.api_get_subscriptions)
-        if (page==0) {
+        if (page==null) {
             return "$baseUrl/$userUrl/$path"
         }
         val query = "page=$page"
         return "$baseUrl/$userUrl/$path?$query"
     }
 
-    fun buildSearchByTypeUrl(type:Int, page:Int) : String {
+    fun buildSearchByTypeUrl(type:Int, page:Int?) : String {
         val path = resources.getString(R.string.api_get_search_by_type)
         val query = "${resources.getString(R.string.query_type)}=$type"
-        if (page==0) {
+        if (page==null) {
             return "$baseUrl/$userUrl/$path?$query"
         }
         return "$baseUrl/$userUrl/$path?$query+&page=$page"
     }
 
-    fun buildSearchByPreferencesUrl(list:List<String>, page:Int) : String {
+    fun buildSearchByPreferencesUrl(list:List<String>, page:Int?) : String {
         val path = resources.getString(R.string.api_get_search_by_preferences)
         var query = ""
         var i = 0
         while (i<list.size) {
             var q = "${resources.getString(R.string.query_service_types)}=${list[i]}"
             if (i<list.size-1) {
-                q = q+"&"
+                q += "&"
             }
             query+=q
             i++
         }
 
-        if (page==0) {
+        if (page==null) {
             return "$baseUrl/$userUrl/$path?$query"
         }
         return "$baseUrl/$userUrl/$path?$query+&page=$page"
@@ -58,16 +58,16 @@ class UrlBuilder(res: Resources) {
         return "$baseUrl/$userUrl/$path?$query"
     }
 
-    fun buildGetUserEventsUrl(page:Int) : String {
+    fun buildGetUserEventsUrl(page:Int?) : String {
         val path = resources.getString(R.string.api_get_user_event)
-        if (page==0) {
+        if (page==null) {
             return "$baseUrl/$userUrl/$path"
         }
         return "$baseUrl/$userUrl/$path?&page=$page"
     }
 
     fun buildSubscriptionUrl(subscribe:Boolean) : String {
-        var path : String
+        val path : String
         if (subscribe) {
             path = resources.getString(R.string.api_post_add_subscription)
         }

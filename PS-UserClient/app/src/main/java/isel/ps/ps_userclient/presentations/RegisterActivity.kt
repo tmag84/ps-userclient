@@ -1,9 +1,12 @@
 package isel.ps.ps_userclient.presentations
 
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
+import android.support.v4.content.LocalBroadcastManager
 import isel.ps.ps_userclient.App
 import isel.ps.ps_userclient.R
+import isel.ps.ps_userclient.receivers.NetworkReceiver
 import isel.ps.ps_userclient.services.NetworkService
 import isel.ps.ps_userclient.utils.constants.IntentKeys
 import isel.ps.ps_userclient.utils.constants.ServiceActions
@@ -46,13 +49,17 @@ class RegisterActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        myReceiver = NetworkReceiver()
+        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
     }
 
     override fun onPause() {
         super.onPause()
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver)
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver)
     }
 }

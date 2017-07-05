@@ -14,5 +14,6 @@ class ServiceActions {
         val UNSUBSCRIBE = "UNSUBSCRIBE"
         val PASSWORD_CHANGE = "PASSWORD_CHANGE"
         val USER_INFO_CHANGE = "USER_INFO_CHANGE"
+        val ADD_EVENT_TO_CALENDAR = "ADD_EVENT_TO_CALENDAR"
     }
 }

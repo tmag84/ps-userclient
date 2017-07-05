@@ -1,5 +1,6 @@
 package isel.ps.ps_userclient.utils.dates
 
+import java.text.SimpleDateFormat
 import java.util.*
 
 class DateUtils {
@@ -19,5 +20,12 @@ class DateUtils {
         }
 
         fun isDateAfterCurrentDay(dt:Long) = getDateAsCalendarInMili(dt).after(getTodayCalendar())
+
+        fun unixToDate(dt:Long?) :String {
+            if (dt==null) return ""
+            val sdf = SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy", Locale.getDefault())
+            val date = Date(dt*1000)
+            return sdf.parse(date.toString()).toString()
+        }
     }
 }
