@@ -4,9 +4,9 @@ import com.android.volley.NetworkResponse
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonRequest
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import isel.ps.ps_userclient.models.mError
+import isel.ps.ps_userclient.utils.mapper.Mapper
+import org.json.JSONObject
 import java.io.IOException
 
 class GetRequest<DTO>(url: String,
@@ -17,19 +17,14 @@ class GetRequest<DTO>(url: String,
 
     : JsonRequest<DTO>(Method.GET, url, "", success, error) {
 
-    companion object {
-        val mapper: ObjectMapper = jacksonObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-    }
-
     override fun parseNetworkResponse(response: NetworkResponse): Response<DTO> {
         try {
-            val dto = GetRequest.mapper.readValue(response.data, dtoType)
+            val dto = Mapper.mapper.readValue(response.data, dtoType)
             return Response.success(dto, null)
         } catch (e: IOException) {
             e.printStackTrace()
-            val error = GetRequest.mapper.readValue(response.data, Error::class.java)
-            val volley_error = VolleyError(error.message)
+            val error = Mapper.mapper.readValue(response.data, mError::class.java)
+            val volley_error = VolleyError(error.detail)
             return Response.error(volley_error)
         }
     }
@@ -38,5 +33,22 @@ class GetRequest<DTO>(url: String,
         val headers = HashMap<String, String>()
         headers.put("Authorization","bearer $auth_token")
         return headers
+    }
+
+    override fun parseNetworkError(volleyError: VolleyError): VolleyError {
+        if (volleyError.networkResponse != null && volleyError.networkResponse.data != null) {
+            try {
+                val error_dto = Mapper.mapper.readValue(volleyError.networkResponse.data, mError::class.java)
+                val volley = VolleyError(error_dto.detail)
+                return volley
+            }
+            catch (e: IOException) {
+                val json = JSONObject(String(volleyError.networkResponse.data))
+                e.printStackTrace()
+                val error_msg = json.getString("Message")
+                return VolleyError(error_msg)
+            }
+        }
+        return volleyError
     }
 }

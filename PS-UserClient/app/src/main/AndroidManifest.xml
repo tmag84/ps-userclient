@@ -2,9 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="isel.ps.ps_userclient">
 
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <application
         android:name=".App"
@@ -29,13 +32,21 @@
         <activity android:name=".presentations.ServiceActivity" />
         <activity android:name=".presentations.ErrorActivity" />
 
-        <service android:name=".services.NetworkService" />
+        <service
+            android:name=".services.FcmService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
 
-        <receiver
-            android:name=".receivers.NetworkReceiver"
-            android:enabled="true"
-            android:exported="false"
-            />
+        <service
+            android:name=".services.FcmIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
 
+        <service
+            android:name=".services.NetworkService" />
     </application>
 </manifest>

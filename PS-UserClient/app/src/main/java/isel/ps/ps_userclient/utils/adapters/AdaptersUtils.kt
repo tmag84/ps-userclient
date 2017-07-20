@@ -2,8 +2,9 @@ package isel.ps.ps_userclient.utils.adapters
 
 import isel.ps.ps_userclient.models.ListEvents
 import isel.ps.ps_userclient.models.ListServices
-import isel.ps.ps_userclient.models.parcelables.ServiceEvent
-import isel.ps.ps_userclient.models.parcelables.mService
+import isel.ps.ps_userclient.models.Event
+import isel.ps.ps_userclient.models.ServiceEvent
+import isel.ps.ps_userclient.models.mService
 import java.util.*
 
 class AdaptersUtils {
@@ -28,20 +29,41 @@ class AdaptersUtils {
 
         fun setUserEvents(events:List<ServiceEvent>) : ArrayList<ListEvents> {
             val array = ArrayList<ListEvents>()
-            if (events.size==null) return array
-            events.sortedWith(compareBy({it.event_date}))
+            if (events.isEmpty()) return array
+            events.sortedWith(compareBy({it.event_begin}))
             events.forEach {
                 val elem = ListEvents(
                         it.service_id,
                         it.service_type,
                         it.service_name,
+                        it.service_location,
                         it.id,
                         it.text,
-                        it.event_date
+                        it.event_begin,
+                        it.event_end
                 )
                 array.add(elem)
             }
             return array
+        }
+
+        fun setListEvents(service: mService, events:List<Event>) : ArrayList<ListEvents> {
+            val list = ArrayList<ServiceEvent>()
+            events.forEach {
+                val ev = ServiceEvent(
+                        service.id,
+                        service.service_type,
+                        service.name,
+                        service.contact_location,
+                        it.id,
+                        it.text,
+                        it.creation_date,
+                        it.event_begin,
+                        it.event_end
+                        )
+                list.add(ev)
+            }
+            return setUserEvents(list)
         }
     }
 }

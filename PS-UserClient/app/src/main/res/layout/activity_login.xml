@@ -13,25 +13,27 @@
         android:id="@+id/lbl_app_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="25dp"
         android:text="@string/app_name"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/lbl_app_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
         android:text="@string/text_login"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:layout_marginBottom="40dp"
+        android:textSize="24sp"
+        android:textStyle="italic"
         android:layout_above="@+id/text_login_email"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -40,12 +42,14 @@
         android:id="@+id/text_login_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:textColor="@color/colorPrimary"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:textColor="@color/colorAccent"
+        android:layout_alignLeft="@+id/text_login_password"
+        android:layout_alignStart="@+id/text_login_password" />
 
     <TextView
         android:id="@+id/lbl_login_email"
@@ -58,20 +62,23 @@
         android:layout_toLeftOf="@+id/text_login_email"
         android:layout_toStartOf="@+id/text_login_email"
         android:text="@string/label_login"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textColor="@color/colorPrimary"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="italic" />
 
     <EditText
         android:id="@+id/text_login_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/text_login_error"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:ems="10"
         android:inputType="textPassword"
-        android:textColor="@color/colorPrimary"
-        android:layout_above="@+id/text_login_error"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:textColor="@color/colorAccent"
+        android:layout_alignLeft="@+id/btn_register"
+        android:layout_alignStart="@+id/btn_register" />
 
     <TextView
         android:id="@+id/lbl_login_password"
@@ -81,12 +88,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="11dp"
-        android:layout_toLeftOf="@+id/text_login_password"
         android:layout_toStartOf="@+id/text_login_password"
         android:text="@string/label_password"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textColor="@color/colorPrimary"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="italic" />
 
     <TextView
         android:id="@+id/text_login_error"

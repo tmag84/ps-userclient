@@ -9,5 +9,6 @@ class SharedPreferencesKeys {
         val PREFERED_TYPES = "list_types"
         val AUTH_TOKEN="auth_token"
         val EXPIRE_DATE="expire_date"
+        val DEVICE_TOKEN="device_token"
     }
 }

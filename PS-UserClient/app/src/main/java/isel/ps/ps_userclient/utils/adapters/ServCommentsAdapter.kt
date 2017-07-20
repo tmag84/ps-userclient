@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import isel.ps.ps_userclient.App
 import isel.ps.ps_userclient.R
-import isel.ps.ps_userclient.models.parcelables.Ranking
+import isel.ps.ps_userclient.models.Ranking
 
 class ServCommentsAdapter(val app: App, val context: Context, val list: ArrayList<Ranking>) : BaseAdapter() {
     val inflater : LayoutInflater = LayoutInflater.from(context)
@@ -26,6 +26,7 @@ class ServCommentsAdapter(val app: App, val context: Context, val list: ArrayLis
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        @Suppress("NAME_SHADOWING")
         var convertView = convertView
         val mViewHolder: MyViewHolder
 

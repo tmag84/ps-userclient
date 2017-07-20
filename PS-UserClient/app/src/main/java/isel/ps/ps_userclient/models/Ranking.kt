@@ -1,4 +1,4 @@
-package isel.ps.ps_userclient.models.parcelables
+package isel.ps.ps_userclient.models
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -9,7 +9,7 @@ data class Ranking(
         val service_id : Int,
         val value: Int,
         val text: String,
-        val creation_date: String
+        val creation_date: Long
 ) : Parcelable {
 
     companion object {
@@ -26,7 +26,7 @@ data class Ranking(
             service_id = source.readInt(),
             value = source.readInt(),
             text = source.readString(),
-            creation_date = source.readString()
+            creation_date = source.readLong()
     )
 
     override fun describeContents() = 0
@@ -38,7 +38,7 @@ data class Ranking(
             writeInt(service_id)
             writeInt(value)
             writeString(text)
-            writeString(creation_date)
+            writeLong(creation_date)
         }
     }
 }

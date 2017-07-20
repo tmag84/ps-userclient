@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
 import isel.ps.ps_userclient.R
 import isel.ps.ps_userclient.receivers.NetworkReceiver
+import isel.ps.ps_userclient.services.NetworkService
+import isel.ps.ps_userclient.utils.constants.ErrorMessages
 import isel.ps.ps_userclient.utils.constants.IntentKeys
 import isel.ps.ps_userclient.utils.constants.ServiceActions
 import kotlinx.android.synthetic.main.activity_error.*
@@ -16,11 +18,22 @@ class ErrorActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        myReceiver = NetworkReceiver(this)
+        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
 
-        val error = intent.extras?.getString(IntentKeys.ERROR)
+        var error = intent.extras?.getString(IntentKeys.ERROR)
+        if (error==null) {
+            error = ErrorMessages.CONNECTION_ERROR
+        }
+
         error_text_error.text = error
 
-        if (error=="No Wifi Connection") {
+        val back_to_login = error==ErrorMessages.NO_WIFI_CONNECTION
+                || error==ErrorMessages.LOGIN_ERROR
+                || error==ErrorMessages.CONNECTION_ERROR
+                || error==ErrorMessages.AUTH_ERROR
+
+        if (back_to_login) {
             btn_error_back.text = getString(R.string.btn_error_back_to_login)
         }
         else {
@@ -28,11 +41,11 @@ class ErrorActivity : BaseActivity() {
         }
 
         btn_error_back.setOnClickListener {
-            if (error=="No Wifi Connection") {
+            if (back_to_login) {
                 startActivity(Intent(this,LoginActivity::class.java))
             }
             else {
-                val request_intent = Intent(this,SubscriptionActivity::class.java)
+                val request_intent = Intent(this, NetworkService::class.java)
                 request_intent.putExtra(IntentKeys.ACTION, ServiceActions.GET_USER_SUBSCRIPTIONS)
                 startService(request_intent)
             }
@@ -41,8 +54,6 @@ class ErrorActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        myReceiver = NetworkReceiver()
-        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
     }
 
     override fun onPause() {

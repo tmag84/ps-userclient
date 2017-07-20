@@ -5,6 +5,6 @@ class ListServices(
         val service_id:Int,
         val service_type:Int,
         val avg_rank:Double,
-        val n_subscribers:Int,
-        val subscribed:Boolean
+        var n_subscribers:Int,
+        var subscribed:Boolean
 )

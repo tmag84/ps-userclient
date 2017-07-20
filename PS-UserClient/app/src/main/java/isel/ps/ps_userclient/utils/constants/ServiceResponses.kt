@@ -1,6 +1,6 @@
 package isel.ps.ps_userclient.utils.constants
 
-class ServiceResponses() {
+class ServiceResponses {
     companion object {
         val SUBSCRIPTIONS_REQUEST_SUCCESS = "SUBSCRIPTIONS_REQUEST_SUCCESS"
         val SUBSCRIPTIONS_REQUEST_FAILURE = "SUBSCRIPTIONS_REQUEST_FAILURE"
@@ -23,6 +23,6 @@ class ServiceResponses() {
         val EDIT_USERNAME_SUCCESS = "EDIT_USERNAME_SUCCESS"
         val EDIT_USERNAME_FAILURE = "EDIT_USERNAME_FAILURE"
         val NO_CONNECTION = "NO_CONNECTION"
-        val EVENT_ADDED_CALENDAR = "EVENT_ADDED_CALENDAR"
+        val NOTIFICATION_RECEIVED = "NOTIFICATION_RECEIVED"
     }
 }

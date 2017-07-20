@@ -1,20 +1,22 @@
-package isel.ps.ps_userclient.models.parcelables
+package isel.ps.ps_userclient.models
 
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Notice(
+data class Event(
         val service_id: Int,
         val id: Int,
         val text: String,
-        val creation_date: String
+        val creation_date: Long,
+        val event_begin: Long,
+        val event_end: Long
 ): Parcelable {
 
     companion object {
         @JvmField @Suppress("unused")
-        val CREATOR = object : Parcelable.Creator<Notice> {
-            override fun createFromParcel(source: Parcel) = Notice(source)
-            override fun newArray(size: Int): Array<Notice?> = arrayOfNulls(size)
+        val CREATOR = object : Parcelable.Creator<Event> {
+            override fun createFromParcel(source: Parcel) = Event(source)
+            override fun newArray(size: Int): Array<Event?> = arrayOfNulls(size)
         }
     }
 
@@ -22,7 +24,9 @@ data class Notice(
             service_id = source.readInt(),
             id = source.readInt(),
             text = source.readString(),
-            creation_date = source.readString()
+            creation_date = source.readLong(),
+            event_begin = source.readLong(),
+            event_end = source.readLong()
     )
 
     override fun describeContents() = 0
@@ -32,7 +36,9 @@ data class Notice(
             writeInt(service_id)
             writeInt(id)
             writeString(text)
-            writeString(creation_date)
+            writeLong(creation_date)
+            writeLong(event_begin)
+            writeLong(event_end)
         }
     }
 }

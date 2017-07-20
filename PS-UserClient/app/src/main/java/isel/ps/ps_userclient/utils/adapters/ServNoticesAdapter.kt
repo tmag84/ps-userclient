@@ -8,7 +8,8 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import isel.ps.ps_userclient.App
 import isel.ps.ps_userclient.R
-import isel.ps.ps_userclient.models.parcelables.Notice
+import isel.ps.ps_userclient.models.Notice
+import isel.ps.ps_userclient.utils.dates.DateUtils
 
 class ServNoticesAdapter(val app: App, val context: Context, val list: ArrayList<Notice>) : BaseAdapter() {
     val inflater : LayoutInflater = LayoutInflater.from(context)
@@ -26,6 +27,7 @@ class ServNoticesAdapter(val app: App, val context: Context, val list: ArrayList
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        @Suppress("NAME_SHADOWING")
         var convertView = convertView
         val mViewHolder: MyViewHolder
 
@@ -39,7 +41,7 @@ class ServNoticesAdapter(val app: App, val context: Context, val list: ArrayList
 
         val currentListData = getItem(position)
 
-        mViewHolder.noticeDate.text = currentListData.creation_date
+        mViewHolder.noticeDate.text = DateUtils.unixToDate(currentListData.creation_date)
         mViewHolder.noticeText.text = currentListData.text
         return convertView
     }

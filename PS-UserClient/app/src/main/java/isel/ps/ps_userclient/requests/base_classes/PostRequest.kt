@@ -5,11 +5,11 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import isel.ps.ps_userclient.models.mError
+import isel.ps.ps_userclient.utils.mapper.Mapper
 import org.json.JSONObject
 import java.io.IOException
+import java.util.*
 
 class PostRequest(url: String,
                   val auth_token: String,
@@ -19,25 +19,42 @@ class PostRequest(url: String,
 
     : JsonObjectRequest(Request.Method.POST, url, json_body, success, error) {
 
-    companion object {
-        val mapper: ObjectMapper = jacksonObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-    }
     override fun parseNetworkResponse(response: NetworkResponse): Response<JSONObject> {
         try {
-            val dto = PostRequest.mapper.readValue(response.data, JSONObject::class.java)
-            return Response.success(dto, null)
-        } catch (e: IOException) {
-            e.printStackTrace()
-            val error = GetRequest.mapper.readValue(response.data, Error::class.java)
-            val volley_error = VolleyError(error.message)
+            if (response.statusCode==200) {
+                val json = JSONObject()
+                return Response.success(json, null)
+            }
+            val dto = Mapper.mapper.readValue(response.data, mError::class.java)
+            val volley_error = VolleyError(dto.detail)
             return Response.error(volley_error)
+        }
+        catch (e: IOException) {
+            e.printStackTrace()
+            return Response.error(VolleyError())
         }
     }
 
     override fun getHeaders(): MutableMap<String, String> {
-        val headers = super.getHeaders()
+        val headers = HashMap<String,String>()
         headers.put("Authorization","bearer $auth_token")
         return headers
+    }
+
+    override fun parseNetworkError(volleyError: VolleyError): VolleyError {
+        if (volleyError.networkResponse != null && volleyError.networkResponse.data != null) {
+            try {
+                val error_dto = Mapper.mapper.readValue(volleyError.networkResponse.data, mError::class.java)
+                val volley = VolleyError(error_dto.detail)
+                return volley
+            }
+            catch (e: IOException) {
+                val json = JSONObject(String(volleyError.networkResponse.data))
+                e.printStackTrace()
+                val error_msg = json.getString("Message")
+                return VolleyError(error_msg)
+            }
+        }
+        return volleyError
     }
 }

@@ -1,4 +1,4 @@
-package isel.ps.ps_userclient.models.parcelables
+package isel.ps.ps_userclient.models
 
 import android.os.Parcel
 import android.os.Parcelable

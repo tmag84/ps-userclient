@@ -20,6 +20,8 @@ class StartupActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        myReceiver = NetworkReceiver(this)
+        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
 
         (application as App).let {
             if (it.SHARED_PREFS.contains(SharedPreferencesKeys.USER_EMAIL)) {
@@ -27,7 +29,8 @@ class StartupActivity : BaseActivity() {
 
                 val email = it.SHARED_PREFS.getString(SharedPreferencesKeys.USER_EMAIL,"")
                 val password = it.SHARED_PREFS.getString(SharedPreferencesKeys.USER_PASSWORD,"")
-                startup_useremail.text = "${R.string.text_loading} ${email}"
+                val username = it.SHARED_PREFS.getString(SharedPreferencesKeys.USER_NAME,"")
+                startup_useremail.text = "${getString(R.string.text_loading)} $username"
 
                 if (it.SHARED_PREFS.contains(SharedPreferencesKeys.EXPIRE_DATE) &&
                         DateUtils.isDateAfterCurrentDay(it.SHARED_PREFS.getLong(SharedPreferencesKeys.EXPIRE_DATE,0))) {
@@ -55,8 +58,6 @@ class StartupActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        myReceiver = NetworkReceiver()
-        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
     }
 
     override fun onPause() {

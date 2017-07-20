@@ -21,6 +21,7 @@
         android:layout_marginTop="18dp"
         android:text="@string/title_profile"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -29,13 +30,14 @@
         android:id="@+id/lbl_profile_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="69dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/title_profile"
+        android:layout_marginTop="31dp"
         android:text="@string/label_username"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        android:layout_below="@+id/title_profile"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textStyle="italic" />
 
     <EditText
         android:id="@+id/text_profile_username"
@@ -47,89 +49,97 @@
         android:layout_alignParentRight="true"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/lbl_type_preference"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:text="@string/label_preference_types"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        android:layout_below="@+id/text_profile_username"
+        android:textStyle="bold"
+        android:layout_below="@+id/btn_clear_info"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="11dp" />
+
+    <CheckBox
+        android:id="@+id/cb_bar"
+        android:layout_width="180sp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/type_bar"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:layout_below="@+id/lbl_type_preference"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <CheckBox
-        android:id="@+id/cb_bar"
-        android:layout_width="150sp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/type_bar"
-        android:textSize="18sp"
-        android:layout_below="@+id/lbl_type_preference"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="34dp"
-        android:layout_marginStart="34dp" />
-
-    <CheckBox
         android:id="@+id/cb_cinema"
-        android:layout_width="150sp"
+        android:layout_width="180sp"
         android:layout_height="wrap_content"
-        android:text="@string/type_cinema"
-        android:textSize="18sp"
         android:layout_alignBaseline="@+id/cb_bar"
         android:layout_alignBottom="@+id/cb_bar"
+        android:layout_toEndOf="@+id/cb_bar"
         android:layout_toRightOf="@+id/cb_bar"
-        android:layout_toEndOf="@+id/cb_bar" />
+        android:text="@string/type_cinema"
+        android:textAllCaps="true"
+        android:textSize="18sp" />
 
     <CheckBox
         android:id="@+id/cb_teatro"
-        android:layout_width="150sp"
+        android:layout_width="180sp"
         android:layout_height="wrap_content"
-        android:text="@string/type_teatro"
-        android:textAlignment="viewStart"
-        android:textSize="18sp"
-        android:layout_below="@+id/cb_danca"
         android:layout_alignLeft="@+id/cb_danca"
         android:layout_alignStart="@+id/cb_danca"
-        android:layout_marginTop="22dp" />
+        android:layout_below="@+id/cb_danca"
+        android:layout_marginTop="22dp"
+        android:text="@string/type_teatro"
+        android:textAlignment="viewStart"
+        android:textAllCaps="true"
+        android:textSize="18sp" />
 
     <CheckBox
         android:id="@+id/cb_danca"
-        android:layout_width="150sp"
+        android:layout_width="180sp"
         android:layout_height="wrap_content"
-        android:text="@string/type_danca"
-        android:textSize="18sp"
         android:layout_below="@+id/cb_bar"
+        android:layout_marginTop="22dp"
         android:layout_toLeftOf="@+id/cb_ginasio"
         android:layout_toStartOf="@+id/cb_ginasio"
-        android:layout_marginTop="22dp" />
+        android:text="@string/type_danca"
+        android:textAllCaps="true"
+        android:textSize="18sp" />
 
     <CheckBox
         android:id="@+id/cb_ginasio"
-        android:layout_width="150sp"
+        android:layout_width="180sp"
         android:layout_height="wrap_content"
-        android:text="@string/type_ginasio"
-        android:textSize="18sp"
         android:layout_alignBaseline="@+id/cb_danca"
         android:layout_alignBottom="@+id/cb_danca"
+        android:layout_toEndOf="@+id/cb_bar"
         android:layout_toRightOf="@+id/cb_bar"
-        android:layout_toEndOf="@+id/cb_bar" />
+        android:text="@string/type_ginasio"
+        android:textAllCaps="true"
+        android:textSize="18sp" />
 
     <CheckBox
         android:id="@+id/cb_restaurante"
-        android:layout_width="150sp"
+        android:layout_width="180sp"
         android:layout_height="wrap_content"
-        android:text="@string/type_restaurante"
-        android:textSize="18sp"
         android:layout_alignBaseline="@+id/cb_teatro"
         android:layout_alignBottom="@+id/cb_teatro"
+        android:layout_toEndOf="@+id/cb_teatro"
         android:layout_toRightOf="@+id/cb_teatro"
-        android:layout_toEndOf="@+id/cb_teatro" />
+        android:text="@string/type_restaurante"
+        android:textAllCaps="true"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btn_submit"
@@ -137,9 +147,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_submit"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/cb_teatro"
-        android:layout_toEndOf="@+id/cb_teatro" />
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@+id/cb_teatro"
+        android:layout_toRightOf="@+id/btn_cancel"
+        android:layout_toEndOf="@+id/btn_cancel"
+        android:layout_marginTop="39dp" />
 
     <Button
         android:id="@+id/btn_cancel"
@@ -149,6 +161,30 @@
         android:layout_alignTop="@+id/btn_submit"
         android:layout_toLeftOf="@+id/cb_restaurante"
         android:layout_toStartOf="@+id/cb_restaurante"
-        android:text="@string/btn_cancel" />
+        android:text="@string/btn_cancel"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
+        android:id="@+id/btn_clear_info"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_clear_preferences"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@+id/text_profile_username"
+        android:layout_toLeftOf="@+id/cb_cinema"
+        android:layout_toStartOf="@+id/cb_cinema"
+        android:layout_marginTop="11dp" />
+
+    <Button
+        android:id="@+id/btn_change_my_password"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btn_clear_info"
+        android:layout_toEndOf="@+id/btn_clear_info"
+        android:layout_toRightOf="@+id/btn_clear_info"
+        android:text="@string/btn_change_password"
+        android:textColor="@color/colorPrimaryDark" />
 
 </RelativeLayout>

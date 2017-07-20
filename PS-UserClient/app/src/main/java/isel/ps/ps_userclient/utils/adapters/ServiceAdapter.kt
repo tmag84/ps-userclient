@@ -45,8 +45,6 @@ class ServiceAdapter(val app: App, val context: Context, val list: ArrayList<Lis
 
         val currentListData = getItem(position)
 
-
-
         mViewHolder.serviceTitle.text = currentListData.service_name
         mViewHolder.serviceTitle.setOnClickListener {
             val intent_service = Intent(context, NetworkService::class.java)
@@ -55,21 +53,34 @@ class ServiceAdapter(val app: App, val context: Context, val list: ArrayList<Lis
             context.startService(intent_service)
         }
 
-        mViewHolder.serviceType.text = currentListData.service_type.toString()
+        mViewHolder.serviceType.text = app.serviceTypes.getServiceTypeName(currentListData.service_type)
         mViewHolder.serviceRank.text = currentListData.avg_rank.toString()
         mViewHolder.serviceSubscribers.text = currentListData.n_subscribers.toString()
 
-        val intent_request = Intent(context, NetworkService::class.java)
-
         if (currentListData.subscribed) {
             mViewHolder.serviceSubscription.text = context.getString(R.string.service_unsubscribe)
-            intent_request.putExtra(IntentKeys.ACTION, ServiceActions.UNSUBSCRIBE)
         }
         else {
             mViewHolder.serviceSubscription.text = context.getString(R.string.service_subscribe)
-            intent_request.putExtra(IntentKeys.ACTION, ServiceActions.SUBSCRIBE)
+
         }
         mViewHolder.serviceSubscription.setOnClickListener {
+            val intent_request = Intent(context, NetworkService::class.java)
+
+            if (currentListData.subscribed) {
+                intent_request.putExtra(IntentKeys.ACTION, ServiceActions.UNSUBSCRIBE)
+                mViewHolder.serviceSubscription.text = context.getString(R.string.service_subscribe)
+                currentListData.subscribed=false
+                currentListData.n_subscribers--
+            }
+            else {
+                intent_request.putExtra(IntentKeys.ACTION, ServiceActions.SUBSCRIBE)
+                mViewHolder.serviceSubscription.text = context.getString(R.string.service_unsubscribe)
+                currentListData.subscribed=true
+                currentListData.n_subscribers++
+            }
+            mViewHolder.serviceSubscribers.text = currentListData.n_subscribers.toString()
+
             intent_request.putExtra(IntentKeys.SERVICE_ID, currentListData.service_id)
             context.startService(intent_request)
         }

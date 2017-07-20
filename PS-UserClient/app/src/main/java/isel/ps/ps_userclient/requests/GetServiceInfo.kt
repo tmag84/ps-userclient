@@ -2,7 +2,7 @@ package isel.ps.ps_userclient.requests
 
 import com.android.volley.VolleyError
 import isel.ps.ps_userclient.App
-import isel.ps.ps_userclient.models.parcelables.mService
+import isel.ps.ps_userclient.models.mService
 import isel.ps.ps_userclient.requests.base_classes.GetRequest
 
 class GetServiceInfo(

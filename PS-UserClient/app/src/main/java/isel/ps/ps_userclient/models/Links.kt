@@ -1,4 +1,4 @@
-package isel.ps.ps_userclient.models.parcelables
+package isel.ps.ps_userclient.models
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -7,7 +7,7 @@ class Links(
         val Href: String,
         val Rel: String
 
-):Parcelable {
+): Parcelable {
     companion object {
         @JvmField @Suppress("unused")
         val CREATOR = object : Parcelable.Creator<Links> {

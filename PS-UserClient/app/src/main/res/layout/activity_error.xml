@@ -17,20 +17,23 @@
         android:layout_marginTop="31dp"
         android:text="@string/title_error"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/lbl_error_msg"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title_error"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="144dp"
         android:text="@string/label_error_message"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_below="@+id/title_error"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/error_text_error"
@@ -47,12 +50,12 @@
         android:id="@+id/lbl_error_back_option"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/error_text_error"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="171dp"
+        android:layout_marginTop="86dp"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp"
-        android:text="@string/label_error_option" />
+        android:text="@string/label_error_option"
+        android:layout_below="@+id/error_text_error"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btn_error_back"
@@ -61,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lbl_error_back_option"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorPrimary"
         android:text="Button"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp" />
 </RelativeLayout>

@@ -19,21 +19,16 @@ class RegisterActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        myReceiver = NetworkReceiver(this)
+        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
 
         btn_registration.setOnClickListener {
             val email = text_register_email.text.toString()
             val password = text_register_password.text.toString()
-            val confirm_password = text_register_confirm_password.toString()
-            val username = text_register_username.toString()
+            val confirm_password = text_register_confirm_password.text.toString()
+            val username = text_register_username.text.toString()
 
             if (password==confirm_password) {
-                (application as App).let{
-                    val editor = it.SHARED_PREFS.edit()
-                    editor.putString(SharedPreferencesKeys.USER_EMAIL,email)
-                    editor.putString(SharedPreferencesKeys.USER_PASSWORD,password)
-                    editor.putString(SharedPreferencesKeys.USER_NAME,username)
-                    editor.apply()
-                }
                 val intent_request = Intent(this, NetworkService::class.java)
                 intent_request.putExtra(IntentKeys.ACTION, ServiceActions.REGISTER)
                 intent_request.putExtra(IntentKeys.USER_EMAIL, email)
@@ -45,12 +40,14 @@ class RegisterActivity : BaseActivity() {
                 text_register_error.text = getString(R.string.text_compare_passwords)
             }
         }
+
+        btn_cancel_registration.setOnClickListener{
+            startActivity(Intent(this,LoginActivity::class.java))
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        myReceiver = NetworkReceiver()
-        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
     }
 
     override fun onPause() {

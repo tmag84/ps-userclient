@@ -4,9 +4,10 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
+import android.view.View
 import isel.ps.ps_userclient.App
 import isel.ps.ps_userclient.R
-import isel.ps.ps_userclient.models.parcelables.mUserEventWrapper
+import isel.ps.ps_userclient.models.mUserEventWrapper
 import isel.ps.ps_userclient.receivers.NetworkReceiver
 import isel.ps.ps_userclient.services.NetworkService
 import isel.ps.ps_userclient.utils.adapters.AdaptersUtils
@@ -18,15 +19,30 @@ import kotlinx.android.synthetic.main.activity_event.*
 
 class EventActivity : BaseActivity() {
 
-    override val layoutResId: Int = R.layout.activity_login
+    override val layoutResId: Int = R.layout.activity_event
     override val actionBarId: Int? = R.id.toolbar
     override val actionBarMenuResId: Int? = R.menu.main_menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        myReceiver = NetworkReceiver(this)
+        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
 
         val events_info = intent.getParcelableExtra<mUserEventWrapper>(IntentKeys.EVENTS_INFO)
-        btn_event_prev.isEnabled = ServiceUtils.checkLinksHasRelField(events_info?._links,"back")
+        if (events_info==null) {
+            val intent_error = Intent(this,ErrorActivity::class.java)
+            intent_error.putExtra(IntentKeys.ERROR,"Problems communication with server")
+            startActivity(intent_error)
+        }
+
+        if (events_info.curr_page!=1 || ServiceUtils.checkLinksHasRelField(events_info._links,"prev")) {
+            btn_event_prev.isEnabled = true
+            btn_event_prev.visibility = View.VISIBLE
+        }
+        else {
+            btn_event_prev.isEnabled = false
+            btn_event_prev.visibility = View.GONE
+        }
         btn_event_prev.setOnClickListener {
             val new_intent = Intent(this, NetworkService::class.java)
             new_intent.putExtra(IntentKeys.ACTION, ServiceActions.GET_USER_EVENTS)
@@ -34,7 +50,14 @@ class EventActivity : BaseActivity() {
             startService(new_intent)
         }
 
-        btn_event_next.isEnabled = ServiceUtils.checkLinksHasRelField(events_info?._links,"back")
+        if (ServiceUtils.checkLinksHasRelField(events_info._links,"next")) {
+            btn_event_next.isEnabled = true
+            btn_event_next.visibility = View.VISIBLE
+        }
+        else {
+            btn_event_next.isEnabled = false
+            btn_event_next.visibility = View.GONE
+        }
         btn_event_next.setOnClickListener {
             val new_intent = Intent(this, NetworkService::class.java)
             new_intent.putExtra(IntentKeys.ACTION, ServiceActions.GET_USER_EVENTS)
@@ -47,8 +70,6 @@ class EventActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        myReceiver = NetworkReceiver()
-        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
     }
 
     override fun onPause() {

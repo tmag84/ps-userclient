@@ -16,42 +16,42 @@
         android:id="@+id/title_service_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar"
         android:layout_marginTop="12dp"
         android:text="TextView"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/toolbar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_service_info"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
         android:background="@drawable/button_border"
         android:text="@string/btn_service_info"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_below="@+id/btn_subscribe_service"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="32dp" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/btn_service_events"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btn_service_info"
-        android:layout_alignBottom="@+id/btn_service_info"
-        android:layout_toEndOf="@+id/btn_service_info"
-        android:layout_toRightOf="@+id/btn_service_info"
         android:background="@drawable/button_border"
         android:text="@string/btn_service_events"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_above="@+id/service_view_flipper"
+        android:layout_toRightOf="@+id/btn_service_info"
+        android:layout_toEndOf="@+id/btn_service_info" />
 
     <Button
         android:id="@+id/btn_service_notices"
@@ -64,7 +64,7 @@
         android:background="@drawable/button_border"
         android:text="@string/btn_service_notices"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/btn_service_rankings"
@@ -78,7 +78,7 @@
         android:background="@drawable/button_border"
         android:text="@string/btn_service_ranking"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorPrimaryDark" />
 
     <ViewFlipper
         android:id="@+id/service_view_flipper"
@@ -99,11 +99,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/service_subscribe"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="21dp"
-        android:layout_below="@+id/title_service_title"
-        android:layout_toRightOf="@+id/btn_service_info"
-        android:layout_toEndOf="@+id/btn_service_info" />
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@+id/text_service_description"
+        android:layout_toRightOf="@+id/btn_service_post_rank"
+        android:layout_toEndOf="@+id/btn_service_post_rank" />
 
     <Button
         android:id="@+id/btn_service_post_rank"
@@ -111,11 +110,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_post_comment"
-        android:textColor="@color/colorPrimary"
-        android:layout_alignBaseline="@+id/btn_subscribe_service"
-        android:layout_alignBottom="@+id/btn_subscribe_service"
-        android:layout_toRightOf="@+id/btn_subscribe_service"
-        android:layout_toEndOf="@+id/btn_subscribe_service"
-        android:layout_marginLeft="35dp"
-        android:layout_marginStart="35dp" />
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_above="@+id/btn_service_info"
+        android:layout_toLeftOf="@+id/btn_service_notices"
+        android:layout_toStartOf="@+id/btn_service_notices" />
+
+    <TextView
+        android:id="@+id/text_service_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/title_service_title"
+        android:layout_marginTop="14dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp" />
 </RelativeLayout>

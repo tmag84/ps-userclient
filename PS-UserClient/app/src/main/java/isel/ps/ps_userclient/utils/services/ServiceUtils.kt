@@ -2,7 +2,7 @@ package isel.ps.ps_userclient.utils.services
 
 import android.content.Context
 import android.net.ConnectivityManager
-import isel.ps.ps_userclient.models.parcelables.Links
+import isel.ps.ps_userclient.models.Links
 
 class ServiceUtils {
     companion object {

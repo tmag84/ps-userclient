@@ -27,5 +27,30 @@ class DateUtils {
             val date = Date(dt*1000)
             return sdf.parse(date.toString()).toString()
         }
+
+        fun getDurationAsString(dt:Long) : String
+        {
+            val hours = dt / 3600
+            val minutes = (dt%3600) / 60
+
+            if (hours==0L && minutes==0L) {
+                return "Sem tempo definido"
+            }
+
+            var duration = ""
+
+            if (hours>0) {
+                duration+="${hours}horas"
+                if (minutes>0) {
+                    duration+=" e ${minutes}minutos"
+                }
+            }
+            else {
+                if (minutes>0) {
+                    duration+="${minutes}minutos"
+                }
+            }
+            return duration
+        }
     }
 }

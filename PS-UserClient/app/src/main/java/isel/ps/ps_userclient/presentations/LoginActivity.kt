@@ -19,20 +19,12 @@ class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        myReceiver = NetworkReceiver(this)
+        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
 
         btn_login.setOnClickListener {
-            //val email = text_login_email.text.toString()
-            //val password = text_login_password.text.toString()
-
-            val email = "tmagalhaes84@gmail.com"
-            val password = "mypassword"
-
-            (application as App).let {
-                val editor = it.SHARED_PREFS.edit()
-                editor.putString(SharedPreferencesKeys.USER_EMAIL,email)
-                editor.putString(SharedPreferencesKeys.USER_PASSWORD,password)
-                editor.apply()
-            }
+            val email = text_login_email.text.toString()
+            val password = text_login_password.text.toString()
 
             val intent_request = Intent(this, NetworkService::class.java)
             intent_request.putExtra(IntentKeys.ACTION, ServiceActions.LOGIN)
@@ -48,8 +40,6 @@ class LoginActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        myReceiver = NetworkReceiver()
-        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(IntentKeys.NETWORK_RECEIVER))
     }
 
     override fun onPause() {

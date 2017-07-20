@@ -1,89 +1,180 @@
 package isel.ps.ps_userclient.utils.builders
 
 import android.content.res.Resources
+import android.net.Uri
 import isel.ps.ps_userclient.R
 
 class UrlBuilder(res: Resources) {
-    private val resources : Resources = res
-    private val baseUrl = resources.getString(R.string.api_url)
-    private val userUrl = resources.getString(R.string.api_user)
+    private val resources: Resources = res
 
-    fun buildLoginUrl() = "$baseUrl/token"
+    fun buildLoginUrl(): String {
+        val builder = Uri.Builder()
+        builder
+                .scheme("https")
+                .authority(resources.getString(R.string.api_authoritiy))
+                .appendPath("token")
 
-    fun buildRegisterUrl() : String {
-        val path = resources.getString(R.string.api_post_register)
-        return "$baseUrl/$userUrl/$path"
+        return builder.toString()
     }
 
-    fun buildGetSubscriptionUrl(page: Int?) : String {
-        val path = resources.getString(R.string.api_get_subscriptions)
-        if (page==null) {
-            return "$baseUrl/$userUrl/$path"
+    fun buildRegisterUrl(): String {
+        val builder = Uri.Builder()
+        builder
+                .scheme("https")
+                .authority(resources.getString(R.string.api_authoritiy))
+                .appendPath(resources.getString(R.string.api_path))
+                .appendPath(resources.getString(R.string.api_user_path))
+                .appendPath(resources.getString(R.string.api_post_register))
+        return builder.toString()
+    }
+
+    fun buildGetSubscriptionUrl(page: Int?, sortOrder: String?): String {
+        val builder = Uri.Builder()
+        builder
+                .scheme("https")
+                .authority(resources.getString(R.string.api_authoritiy))
+                .appendPath(resources.getString(R.string.api_path))
+                .appendPath(resources.getString(R.string.api_user_path))
+                .appendPath(resources.getString(R.string.api_get_subscriptions))
+
+        if (page != null) {
+            builder.appendQueryParameter("page", page.toString())
         }
-        val query = "page=$page"
-        return "$baseUrl/$userUrl/$path?$query"
-    }
-
-    fun buildSearchByTypeUrl(type:Int, page:Int?) : String {
-        val path = resources.getString(R.string.api_get_search_by_type)
-        val query = "${resources.getString(R.string.query_type)}=$type"
-        if (page==null) {
-            return "$baseUrl/$userUrl/$path?$query"
+        if (sortOrder != null) {
+            builder.appendQueryParameter("sortOrder", sortOrder)
         }
-        return "$baseUrl/$userUrl/$path?$query+&page=$page"
+        return builder.toString()
     }
 
-    fun buildSearchByPreferencesUrl(list:List<String>, page:Int?) : String {
-        val path = resources.getString(R.string.api_get_search_by_preferences)
-        var query = ""
-        var i = 0
-        while (i<list.size) {
-            var q = "${resources.getString(R.string.query_service_types)}=${list[i]}"
-            if (i<list.size-1) {
-                q += "&"
-            }
-            query+=q
-            i++
+    fun buildSearchByTypeUrl(type: Int, page: Int?, sortOrder: String?): String {
+        val builder = Uri.Builder()
+        builder
+                .scheme("https")
+                .authority(resources.getString(R.string.api_authoritiy))
+                .appendPath(resources.getString(R.string.api_path))
+                .appendPath(resources.getString(R.string.api_user_path))
+                .appendPath(resources.getString(R.string.api_get_search_by_type))
+                .appendQueryParameter("type", type.toString())
+
+        if (page != null) {
+            builder.appendQueryParameter("page", page.toString())
         }
-
-        if (page==null) {
-            return "$baseUrl/$userUrl/$path?$query"
+        if (sortOrder != null) {
+            builder.appendQueryParameter("sortOrder", sortOrder)
         }
-        return "$baseUrl/$userUrl/$path?$query+&page=$page"
+        return builder.toString()
     }
 
-    fun buildGetServiceUrl(id:Int) : String {
-        val path = resources.getString(R.string.api_get_service)
-        val query = "${resources.getString(R.string.query_service_id)}=$id"
-        return "$baseUrl/$userUrl/$path?$query"
-    }
+    fun buildSearchByPreferencesUrl(list: List<Int>, page: Int?, sortOrder:String?): String {
+        val builder = Uri.Builder()
+        builder
+                .scheme("https")
+                .authority(resources.getString(R.string.api_authoritiy))
+                .appendPath(resources.getString(R.string.api_path))
+                .appendPath(resources.getString(R.string.api_user_path))
+                .appendPath(resources.getString(R.string.api_get_search_by_preferences))
 
-    fun buildGetUserEventsUrl(page:Int?) : String {
-        val path = resources.getString(R.string.api_get_user_event)
-        if (page==null) {
-            return "$baseUrl/$userUrl/$path"
+        list.forEach {
+            builder.appendQueryParameter(resources.getString(R.string.query_service_types), it.toString())
         }
-        return "$baseUrl/$userUrl/$path?&page=$page"
+        if (page != null) {
+            builder.appendQueryParameter("page", page.toString())
+        }
+        if (sortOrder != null) {
+            builder.appendQueryParameter("sortOrder", sortOrder)
+        }
+        return builder.toString()
     }
 
-    fun buildSubscriptionUrl(subscribe:Boolean) : String {
-        val path : String
+    fun buildGetServiceUrl(id: Int): String {
+        val builder = Uri.Builder()
+        builder
+                .scheme("https")
+                .authority(resources.getString(R.string.api_authoritiy))
+                .appendPath(resources.getString(R.string.api_path))
+                .appendPath(resources.getString(R.string.api_user_path))
+                .appendPath(resources.getString(R.string.api_get_service))
+                .appendQueryParameter(resources.getString(R.string.query_service_id),id.toString())
+
+        return builder.toString()
+    }
+
+    fun buildGetUserEventsUrl(page: Int?, sortOrder: String?): String {
+        val builder = Uri.Builder()
+        builder
+                .scheme("https")
+                .authority(resources.getString(R.string.api_authoritiy))
+                .appendPath(resources.getString(R.string.api_path))
+                .appendPath(resources.getString(R.string.api_user_path))
+                .appendPath(resources.getString(R.string.api_get_user_event))
+
+        if (page != null) {
+            builder.appendQueryParameter("page", page.toString())
+        }
+        if (sortOrder != null) {
+            builder.appendQueryParameter("sortOrder", sortOrder)
+        }
+        return builder.toString()
+    }
+
+    fun buildSubscriptionUrl(subscribe: Boolean): String {
+        val builder = Uri.Builder()
+        builder
+                .scheme("https")
+                .authority(resources.getString(R.string.api_authoritiy))
+                .appendPath(resources.getString(R.string.api_path))
+                .appendPath(resources.getString(R.string.api_user_path))
+
         if (subscribe) {
-            path = resources.getString(R.string.api_post_add_subscription)
+            builder.appendPath(resources.getString(R.string.api_post_add_subscription))
         }
         else {
-            path = resources.getString(R.string.api_post_remove_subscription)
+            builder.appendPath(resources.getString(R.string.api_post_remove_subscription))
         }
-        return "$baseUrl/$userUrl/$path"
+        return builder.toString()
     }
 
-    fun buildChangePassUrl() : String {
-        val path = resources.getString(R.string.api_put_edit_password)
-        return "$baseUrl/$userUrl/$path"
+    fun buildPostRankingUrl(): String {
+        val builder = Uri.Builder()
+        builder
+                .scheme("https")
+                .authority(resources.getString(R.string.api_authoritiy))
+                .appendPath(resources.getString(R.string.api_path))
+                .appendPath(resources.getString(R.string.api_user_path))
+                .appendPath(resources.getString(R.string.api_post_rank))
+        return builder.toString()
     }
 
-    fun buildEditUserName() : String {
-        val path = resources.getString(R.string.api_put_edit_user)
-        return "$baseUrl/$userUrl/$path"
+    fun buildChangePassUrl(): String {
+        val builder = Uri.Builder()
+        builder
+                .scheme("https")
+                .authority(resources.getString(R.string.api_authoritiy))
+                .appendPath(resources.getString(R.string.api_path))
+                .appendPath(resources.getString(R.string.api_user_path))
+                .appendPath(resources.getString(R.string.api_put_edit_password))
+        return builder.toString()
     }
- }
+
+    fun buildEditUserName(): String {
+        val builder = Uri.Builder()
+        builder
+                .scheme("https")
+                .authority(resources.getString(R.string.api_authoritiy))
+                .appendPath(resources.getString(R.string.api_path))
+                .appendPath(resources.getString(R.string.api_user_path))
+                .appendPath(resources.getString(R.string.api_put_edit_user))
+        return builder.toString()
+    }
+
+    fun buildRegisterDeviceUrl(): String {
+        val builder = Uri.Builder()
+        builder
+                .scheme("https")
+                .authority(resources.getString(R.string.api_authoritiy))
+                .appendPath(resources.getString(R.string.api_path))
+                .appendPath(resources.getString(R.string.api_user_path))
+                .appendPath(resources.getString(R.string.api_post_register_device))
+        return builder.toString()
+    }
+}

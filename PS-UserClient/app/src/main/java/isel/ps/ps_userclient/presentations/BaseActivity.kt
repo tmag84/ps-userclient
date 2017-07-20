@@ -70,7 +70,13 @@ abstract class BaseActivity : AppCompatActivity() {
                 startActivity(Intent(this,ProfileActivity::class.java))
             }
             R.id.menu_events -> {
-                startActivity(Intent(this,EventActivity::class.java))
+                val intent_request = Intent(this, NetworkService::class.java)
+                intent_request.putExtra(IntentKeys.ACTION, ServiceActions.GET_USER_EVENTS)
+                (application as App).let {
+                    val email = it.SHARED_PREFS.getString(SharedPreferencesKeys.USER_EMAIL,"")
+                    intent_request.putExtra(IntentKeys.USER_EMAIL,email)
+                }
+                startService(intent_request)
             }
             else -> return super.onOptionsItemSelected(item)
         }

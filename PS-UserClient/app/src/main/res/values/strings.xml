@@ -1,19 +1,21 @@
 <resources>
-    <string name="app_name" translatable="false">Espaço Virtual Colaboração</string>
+    <string name="app_name" translatable="false">ESV</string>
 
-    <string name="label_subscribers">Assinantes</string>
+    <string name="label_subscribers" translatable="false">Assinantes</string>
     <string name="label_ranking" translatable="false">Avg rank</string>
-    <string name="label_service_type">Área de Serviço</string>
+    <string name="label_service_type" translatable="false">Área de Serviço</string>
     <string name="label_login_title" translatable="false">Login</string>
-    <string name="label_login_google">Requer uma conta Google</string>
-    <string name="label_login" translatable="false">Google email</string>
+    <string name="label_login_google" translatable="false">Requer uma conta Google</string>
+    <string name="label_login" translatable="false">Email</string>
     <string name="label_password" translatable="false">Password</string>
     <string name="label_confirm_password" translatable="false">Confirmar Password</string>
     <string name="label_username" translatable="false">Nome do Usuário</string>
     <string name="label_preference_types" translatable="false">Preferência de Áreas</string>
     <string name="label_error_message" translatable="false">O seguinte erro ocorreu</string>
     <string name="label_error_option" translatable="false">Voltar para</string>
+
     <string name="lbl_event_date" translatable="false">Data</string>
+    <string name="lbl_event_duration" translatable="false">Duração</string>
 
     <string name="lbl_service_location" translatable="false">Localização</string>
     <string name="lbl_service_contact_number" translatable="false">Número telefone</string>
@@ -28,13 +30,19 @@
 
     <string name="lbl_notice_date" translatable="false">Data Publicação</string>
 
-    <string name="service_subscribe">Aderir</string>
-    <string name="service_unsubscribe">Desaderir</string>
+    <string name="lbl_rank_msg_size" translatable="false">Limitado a 150 caractéres</string>
+    <string name="lbl_sort" translatable="false">Ordernar por</string>
 
-    <string name="btn_search">Pesquisar</string>
+    <string name="lbl_change_password" translatable="false">Password</string>
+    <string name="lbl_confirm_change_password" translatable="false">Confirmar Password</string>
+
+    <string name="service_subscribe" translatable="false">Subscrever</string>
+    <string name="service_unsubscribe" translatable="false">Cancelar Subscrição</string>
+
+    <string name="btn_search" translatable="false">Pesquisar</string>
     <string name="btn_preference_search" translatable="false">Pesquisar por preferências</string>
     <string name="btn_login" translatable="false">Login</string>
-    <string name="btn_register">Registre-se</string>
+    <string name="btn_register" translatable="false">Registrar</string>
     <string name="btn_prev" translatable="false">Back</string>
     <string name="btn_next" translatable="false">Next</string>
     <string name="btn_submit" translatable="false">Submeter</string>
@@ -42,32 +50,47 @@
     <string name="btn_error_back_to_login" translatable="false">Login</string>
     <string name="btn_error_back_to_subscriber" translatable="false">Subscrições</string>
     <string name="btn_add_event_calendar" translatable="false">Adicionar ao Calendário</string>
+    <string name="btn_remove_event_calendar" translatable="false">Remover do Calendário</string>
     <string name="btn_post_comment" translatable="false">Comentar</string>
     <string name="btn_alter_comment" translatable="false">Alterar Comentário</string>
-
+    <string name="btn_clear_preferences" translatable="false">Limpar Informação</string>
+    <string name="btn_sort_by_subscribers" translatable="false">Subscrições</string>
+    <string name="btn_sort_by_rank" translatable="false">Avaliação</string>
+    <string name="btn_sort_by_date_desc" translatable="false">Data descendente</string>
+    <string name="btn_sort_by_date_asc" translatable="false">Data ascendente</string>
     <string name="btn_service_info" translatable="false">Informação</string>
     <string name="btn_service_events" translatable="false">Eventos</string>
     <string name="btn_service_notices" translatable="false">Notícias</string>
     <string name="btn_service_ranking" translatable="false">Comentários</string>
+    <string name="btn_change_password" translatable="false">Alterar Password</string>
 
     <string name="text_loading" translatable="false">Loading User</string>
-    <string name="text_login">Faça sign-in com a sua conta</string>
-    <string name="text_register">Ou</string>
+    <string name="text_login" translatable="false">Faça sign-in com a sua conta</string>
+    <string name="text_register" translatable="false">Ou</string>
     <string name="text_compare_passwords" translatable="false">As passwords não são iguais</string>
     <string name="text_no_preferences_toast" translatable="false">Não existem preferências selecionadas, faça a seleção no Perfil.</string>
-    <string name="text_added_subscription" translatable="false">Ou</string>
-    <string name="text_removed_subscription" translatable="false">Ou</string>
+    <string name="text_added_subscription" translatable="false">Serviço subscrito</string>
+    <string name="text_removed_subscription" translatable="false">Serviço cancelado</string>
     <string name="text_not_provider_info" translatable="false">Não fornecido</string>
+    <string name="text_added_ranking" translatable="false">Comentário adicionado</string>
+    <string name="text_changed_username" translatable="false">Alterado o nome do utilizador</string>
+    <string name="text_changed_password" translatable="false">Alterado o password</string>
+    <string name="text_change_pass_error" translatable="false">Passwords não são iguais</string>
 
-    <string name="menu_subscriptions">Subscrições</string>
+    <string name="hint_rank_post_text" translatable="false">Seu comentário</string>
+
+    <string name="menu_subscriptions" translatable="false">Subscrições</string>
     <string name="menu_profile" translatable="false">Perfil</string>
-    <string name="menu_search">Pesquisar</string>
+    <string name="menu_search" translatable="false">Pesquisar</string>
     <string name="menu_events" translatable="false">Eventos</string>
-    <string name="menu_settings">Perfil</string>
+    <string name="menu_settings" translatable="false">Perfil</string>
 
     <string name="title_subscription" translatable="false">Subscrições</string>
     <string name="title_profile" translatable="false">Perfil</string>
     <string name="title_error" translatable="false">Erro</string>
     <string name="title_events" translatable="false">Futuros Eventos</string>
+    <string name="title_post_rank" translatable="false">Adicionar Comentário</string>
+    <string name="title_put_rank" translatable="false">Alterar Comentário</string>
+    <string name="title_change_username" translatable="false">Alterar Password</string>
 
 </resources>

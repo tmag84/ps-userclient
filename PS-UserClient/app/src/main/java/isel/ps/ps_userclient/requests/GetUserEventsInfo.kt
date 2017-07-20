@@ -2,7 +2,7 @@ package isel.ps.ps_userclient.requests
 
 import com.android.volley.VolleyError
 import isel.ps.ps_userclient.App
-import isel.ps.ps_userclient.models.parcelables.mUserEventWrapper
+import isel.ps.ps_userclient.models.mUserEventWrapper
 import isel.ps.ps_userclient.requests.base_classes.GetRequest
 
 class GetUserEventsInfo(

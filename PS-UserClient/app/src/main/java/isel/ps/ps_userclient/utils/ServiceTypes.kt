@@ -3,37 +3,47 @@ package isel.ps.ps_userclient.utils
 import android.content.Context
 import isel.ps.ps_userclient.presentations.ProfileActivity
 import kotlinx.android.synthetic.main.activity_profile.*
+import java.util.*
 
-class ServiceTypes() {
+class ServiceTypes {
     val service_types = HashMap<String,Int>()
+    val BAR = "Bar"
+    val CINEMA = "Cinema"
+    val TEATRO = "Teatro"
+    val DANCA = "Dança"
+    val GINASIO = "Ginásio"
+    val RESTAURANTE = "Restaurante"
 
     init {
-        service_types.put("Bar",1)
-        service_types.put("Cinema",2)
-        service_types.put("Teatro",3)
-        service_types.put("Dança",4)
-        service_types.put("Ginásio",5)
-        service_types.put("Restaurante",6)
+        service_types.put(BAR,1)
+        service_types.put(CINEMA,2)
+        service_types.put(TEATRO,3)
+        service_types.put(DANCA,4)
+        service_types.put(GINASIO,5)
+        service_types.put(RESTAURANTE,6)
     }
 
     fun getServiceTypeId(type:String) : Int {
-        return service_types.get(type)!!
+        if (service_types.containsKey(type)) {
+            return service_types[type] as Int
+        }
+        return -1
     }
 
     fun getServiceTypeName(id:Int) : String {
         when(id) {
-            1 -> return "Bar"
-            2 -> return "Cinema"
-            3 -> return "Teatro"
-            4 -> return "Dança"
-            5 -> return "Ginásio"
-            6 -> return "Restaurante"
+            1 -> return BAR
+            2 -> return CINEMA
+            3 -> return TEATRO
+            4 -> return DANCA
+            5 -> return GINASIO
+            6 -> return RESTAURANTE
             else -> return ""
         }
     }
 
     fun getTypesList() : List<String> {
-        return service_types.keys.toList()
+        return Arrays.asList(BAR,CINEMA,TEATRO,DANCA,GINASIO,RESTAURANTE)
     }
 
     fun checkBoxes(ctx:Context,list:List<String>) {
@@ -70,22 +80,22 @@ class ServiceTypes() {
         val new_preferneces = ArrayList<String>()
 
         if(ctx.cb_bar.isChecked) {
-            new_preferneces.add(getServiceTypeId("Bar").toString())
+            new_preferneces.add(BAR)
         }
         if(ctx.cb_cinema.isChecked) {
-            new_preferneces.add(getServiceTypeId("Cinema").toString())
+            new_preferneces.add(CINEMA)
         }
         if(ctx.cb_danca.isChecked) {
-            new_preferneces.add(getServiceTypeId("Dança").toString())
+            new_preferneces.add(DANCA)
         }
         if(ctx.cb_ginasio.isChecked){
-            new_preferneces.add(getServiceTypeId("Ginásio").toString())
+            new_preferneces.add(GINASIO)
         }
         if(ctx.cb_teatro.isChecked) {
-            new_preferneces.add(getServiceTypeId("Teatro").toString())
+            new_preferneces.add(TEATRO)
         }
         if(ctx.cb_restaurante.isChecked) {
-            new_preferneces.add(getServiceTypeId("Restaurante").toString())
+            new_preferneces.add(RESTAURANTE)
         }
         return new_preferneces
     }
